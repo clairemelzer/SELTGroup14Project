@@ -20,7 +20,7 @@ class BuildingsController < ApplicationController
 
   def create
     @building = Building.create!(building_params)
-    flash[:notice] = "#{@building.address} was successfully created."
+    #flash[:notice] = "#{@building.address} was successfully created."
     redirect_to buildings_path
   end
 

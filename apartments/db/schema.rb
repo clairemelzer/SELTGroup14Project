@@ -14,6 +14,10 @@
 ActiveRecord::Schema.define(version: 20151101220031) do
 
   create_table "buildings", force: :cascade do |t|
+    t.string   "address"
+    t.string   "management"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
