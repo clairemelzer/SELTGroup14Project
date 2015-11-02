@@ -11,7 +11,7 @@ class BuildingsController < ApplicationController
   end
 
   def index
-    @building = Building.all
+    @buildings = Building.all
   end
 
   def new
