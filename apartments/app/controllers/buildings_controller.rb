@@ -1,8 +1,4 @@
 class BuildingsController < ApplicationController
-<<<<<<< HEAD
-    
-end
-=======
 
   def building_params
     params.require(:building).permit(:address, :management)
@@ -47,4 +43,3 @@ end
   end
 
 end
->>>>>>> 9444e36849b5e8edda8b85282933d8cfe1dbb3ac

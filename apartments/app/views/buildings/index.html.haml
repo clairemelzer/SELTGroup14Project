@@ -1,0 +1,16 @@
+%h1 All Buildings
+
+%table#buildings
+  %thead
+    %tr
+      %th Address
+      %th Management Company
+      %th More Info
+  %tbody
+    - @buildings.each do |building|
+      %tr
+        %td= building.address
+        %td= building.management
+        %td= link_to "More about #{building.address}", building_path(building)
+
+= link_to 'Add new Building', new_building_path
