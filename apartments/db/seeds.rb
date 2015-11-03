@@ -7,7 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 buildings = [{:address => '319 Court St', :management => "Hawkeye Campus Properties"},
-    	  {:address => '19 E Burlington St', :management => "Apartments Downtown"}]
+    	  {:address => '19 E Burlington St', :management => "Apartments Downtown"},
+    	  {:address => '408 S Van Buren St', :management => "Apartments Downtown"}]
 
 buildings.each do |building|
   Building.create!(building)

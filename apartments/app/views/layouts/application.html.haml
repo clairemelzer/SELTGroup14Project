@@ -22,3 +22,8 @@
       
     %br
     = yield
+    
+    %br
+    %br
+    - if !current_page?('/homepage')
+      = link_to 'Return to Homepage', homepage_path
