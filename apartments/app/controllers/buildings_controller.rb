@@ -1,4 +1,5 @@
 class BuildingsController < ApplicationController
+  before_filter :set_current_user
 
   def building_params
     params.require(:building).permit(:address, :management)

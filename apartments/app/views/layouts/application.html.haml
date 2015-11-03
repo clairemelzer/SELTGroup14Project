@@ -9,9 +9,15 @@
   %body
     %h1.title Iowa City Apartment Finder!
     #main
-      - if flash[:notice]
-        #notice.message= flash[:notice]
-      - elsif flash[:warning]
-        #warning.message= flash[:warning]
-
-      = yield
+    - if @current_user == nil
+      = button_to "SignUp/Login", login_path, method: :get, :id =>"login"
+    - else
+      - flash[:notice] = "You are currently logged in"
+      = button_to "Logout", logout_path, method: :delete, :id => "logout"
+    
+    - if flash[:notice]
+      #notice.message= flash[:notice]
+    - elsif flash[:warning]
+      #warning.message= flash[:warning]
+    %br
+    = yield
