@@ -1,13 +1,14 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: White;
+  background: WhiteSmoke;
   color: DarkSlateGrey;
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 10pt;
 }
 div#main {
-  margin: 0;
+  width: 90%;
+  margin: 0 auto;
   padding: 0 20px 20px;
 }
 a {
@@ -25,9 +26,10 @@ h1 {
 }
 h1.title {
   margin: 0 0 1em;
+  text-align: center;
   padding: 10px;
   background-color: gold;
-  color: white;
+  color: #444444;
   border-bottom: 4px solid black;
   font-size: 2em;
   font-style: normal;
@@ -52,9 +54,34 @@ table#building th, table#buildings td {
   margin: 1em 0;
   padding: 4px;
 }
+
+form{
+  text-align: center;
+}
+
 form label {
+  text-align: center;
   display: block;
   line-height: 25px;
-  font-weight: bold;
   color: black;
+}
+
+.input {
+  border-radius: 5px;
+  width: 200px;
+}
+
+.button {
+  width: 200px;
+  height: 40px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  background: #98FB98;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.button:hover{
+  background: #87EA87;
 }

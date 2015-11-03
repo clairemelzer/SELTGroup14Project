@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Rotten Potatoes!
+    %title Iowa City Apts
     = stylesheet_link_tag 'application', 'media' => 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -10,14 +10,15 @@
     %h1.title Iowa City Apartment Finder!
     #main
     - if @current_user == nil
-      = button_to "SignUp/Login", login_path, method: :get, :id =>"login"
+      = button_to "SignUp/Login", login_path, method: :get, :id =>"login", :class => 'button'
     - else
       - flash[:notice] = "You are currently logged in"
-      = button_to "Logout", logout_path, method: :delete, :id => "logout"
+      = button_to "Logout", logout_path, method: :delete, :id => "logout", :class => 'button'
     
     - if flash[:notice]
       #notice.message= flash[:notice]
     - elsif flash[:warning]
       #warning.message= flash[:warning]
+      
     %br
     = yield

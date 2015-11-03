@@ -3,14 +3,14 @@
 = form_tag buildings_path do
 
   = label :building, :address, 'Address:'
-  = text_field :building, 'address'
+  = text_field :building, 'address', :class => 'input'
   %br
   %br
   = label :building, :management, 'Management Company:'
-  = text_field :building, 'management'
+  = text_field :building, 'management', :class => 'input'
   %br
   %br
-  = submit_tag 'Add Building'
+  = submit_tag 'Add Building', :class => 'button'
   
 %br
 = link_to 'Nevermind, go back to buildings list', buildings_path

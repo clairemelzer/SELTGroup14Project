@@ -3,18 +3,19 @@
 = form_tag users_path do
 
   = label :user, :user_id, 'Name'
-  = text_field :user, 'name'
+  = text_field :user, 'name', :class => 'input'
 
   = label :user, :email, 'Email'
-  = text_field :user, 'email'
+  = text_field :user, 'email', :class => 'input'
   
   = label :user, :password, 'Password'
-  = password_field :user, 'password'
+  = password_field :user, 'password', :class => 'input'
   
   = label :user, :password2, 'Confirm Password'
-  = password_field :user, 'password2'
-
-  = submit_tag 'Create User'
+  = password_field :user, 'password2', :class => 'input'
+  %br
+  %br
+  = submit_tag 'Create User', :class => 'button'
 
 
 
