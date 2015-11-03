@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     
     def create
         @user = User.create!(user_params)
+        flash[:notice] = "Welcome #{@user.name} your username was successfully created."
         redirect_to buildings_path
     end
 end
