@@ -1,0 +1,22 @@
+-# in app/views/movies/show.html.haml
+
+%h2 Details about #{@building.address}
+
+%ul#details
+  %li
+    Managment Company:
+    = @building.management
+
+
+%h3 Pictures:
+
+%h3 Apartments in this building:
+
+
+%br
+= link_to 'Edit This Building', edit_building_path(@building)
+%br
+%b
+= button_to 'Delete', building_path(@building), :method => :delete, :confirm => 'Are you sure?'
+%br
+= link_to 'Back to all buildings', buildings_path
