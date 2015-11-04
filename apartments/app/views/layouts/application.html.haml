@@ -9,21 +9,21 @@
   %body
     %h1.title Iowa City Apartment Finder!
     #main
-    - if @current_user == nil
-      = button_to "SignUp/Login", login_path, method: :get, :id =>"login", :class => 'button'
-    - else
-      - flash[:notice] = "You are currently logged in"
-      = button_to "Logout", logout_path, method: :delete, :id => "logout", :class => 'button'
-    
-    - if flash[:notice]
-      #notice.message= flash[:notice]
-    - elsif flash[:warning]
-      #warning.message= flash[:warning]
+      - if @current_user == nil
+        = button_to "SignUp/Login", login_path, method: :get, :id =>"login", :class => 'buttonblue'
+      - else
+        - flash[:notice] = "You are currently logged in"
+        = button_to "Logout", logout_path, method: :delete, :id => "logout", :class => 'buttonblue'
       
-    %br
-    = yield
-    
-    %br
-    %br
-    - if !current_page?('/homepage')
-      = link_to 'Return to Homepage', homepage_path
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      - elsif flash[:warning]
+        #warning.message= flash[:warning]
+        
+        %br
+      = yield
+      
+      %br
+      %br
+      - if !current_page?('/homepage')
+        = link_to 'Return to Homepage', homepage_path
