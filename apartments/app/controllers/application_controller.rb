@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
     #else
      # @current_user = nil
     #end
-    
     @current_user ||= session[:session_token] && User.find_by_session_token(session[:session_token])
   end
   helper_method :set_current_user
