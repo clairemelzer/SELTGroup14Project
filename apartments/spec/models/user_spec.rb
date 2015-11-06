@@ -2,21 +2,31 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
  it "has a valid Factory" do
-     create(:user).should be_valid
+     expect(create(:user)).to be_valid
  end
  
  it "Is invalid without email" do
-     build(:user, email: nil).should_not be_valid
+     expect(build(:user, email: nil)).to_not be_valid
  end
  it "Is invalid without password" do
-     build(:user, password: nil).should_not be_valid
+     expect(build(:user, password: nil)).to_not be_valid
  end
- it "sets a user session token on create_user" do
-     user = User.new
-     user_attributes = {"id"=>1, "name"=>nil, "email"=>"testemail", "password"=>"testpwd123" }
-     user.create_user(user_attributes)
-     expect(user.session_token).to eq(@session_token)
+  it "Is invalid without password confirmation" do
+     expect(build(:user, password_confirmation: nil)).to_not be_valid
  end
- 
+  it "Is invalid without name" do
+     expect(build(:user, name: nil)).to_not be_valid
+ end
+ it "creates a session token" do
+     user = create(:user)
+     expect(user.session_token).to be_truthy
+ end
+ it "is invalid with too short of password" do
+     expect(build(:user, password: "hi")).to_not be_valid
+ end
+ it "is invalid with too long of name" do
+  expect(build(:user, name: SecureRandom.base64(50) )).to_not be_valid
+end
+
  
 end
