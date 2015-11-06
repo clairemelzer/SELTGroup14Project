@@ -8,11 +8,10 @@ Given /^I am on the ApartmentFinder homepage$/ do
   visit homepage_path
  end
 
-
  When /^I have added a building with address "(.*?)" and management "(.*?)"$/ do |address, management|
   visit new_building_path
-  #fill_in 'Address', :with => address
-  #fill_in 'Management Company', :with => management
+  fill_in 'Address', :with => address
+  fill_in 'Management Company', :with => management
   click_button 'Add Building'
  end
 
