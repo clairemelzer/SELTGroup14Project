@@ -6,7 +6,7 @@ And I have visited the Create Account page
 Then I should see "Sign Up"
 
 Scenario: Create Account
- When I have created a new user with name "Claire" and email "clairetest@email.com" and password "hello" and confirmation "hello"
- And I am on the ApartmentFinder login page
- Then I should see "Login" 
- #Then I should see "Sign up successful! Welcome to Iowa City Apartment Finder"
+ When I have created a new user with name "Claire" and email "clairetest@email.com" and password "hello1" and confirmation "hello1"
+ #And I am on the ApartmentFinder login page
+ #Then I should see "Login" 
+ Then I should see "Sign up successful! Welcome to Iowa City Apartment Finder"

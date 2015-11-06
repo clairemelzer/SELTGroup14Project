@@ -36,3 +36,8 @@ And /^I click on the User Profile button$/ do
   visit homepage_path 
   click_button "View Profile"
 end
+
+Then /^I should see flash message "(.*?)"$/ do |message|
+ expect(page).to have_selector ".alert", text: message
+  expect(page).to have_content(message)
+end
