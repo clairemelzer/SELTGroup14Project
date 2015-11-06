@@ -32,6 +32,11 @@ Given /^I am on the ApartmentFinder homepage$/ do
    visit homepage_path
    click_on "View All Buildings"
  end
+ 
+  When /^I have visited the homepage$/ do 
+   visit buildings_path
+   click_on "Return to Homepage"
+ end
 
  When /^I have visited the Details about "(.*?)" page$/ do |address|
    visit buildings_path
