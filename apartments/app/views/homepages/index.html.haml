@@ -3,8 +3,7 @@
 - else
   - flash[:notice] = "You are currently logged in as #{@current_user.name}."
   = button_to "Logout", logout_path, method: :delete, :id => "logout", :class => 'buttonblue'
-
+%br
 "Welcome To The Apartment Finder"
-= link_to 'View All Buildings', buildings_path
 %br
 %br

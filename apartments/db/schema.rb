@@ -30,5 +30,6 @@ ActiveRecord::Schema.define(version: 20151105225343) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["session_token"], name: "index_users_on_session_token"
 
 end

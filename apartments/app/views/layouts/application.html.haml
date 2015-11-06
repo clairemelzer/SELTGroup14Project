@@ -22,5 +22,8 @@
       
       %br
 
-      - if !current_page?('/homepage') && !current_page?('/buildings')
+      - if !current_page?('/buildings')
         = link_to 'View Building List', buildings_path
+      %br
+      - if !current_page?('/homepage')
+        = link_to 'Return To Homepage', homepage_path
