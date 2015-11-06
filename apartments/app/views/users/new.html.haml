@@ -1,8 +1,15 @@
+
 %h1 Sign Up
 
-= form_tag users_path do
+-unless @user ==nil
+  -if @user.errors.any?
+    %ul
+    -@user.errors.full_messages.each do |msg|
+      %li #{msg}
+      
+= form_tag users_path, :id=>'signup_form', :method=> 'post' do
 
-  = label :user, :user_id, 'Name'
+  = label :user, :name, 'Name'
   = text_field :user, 'name', :class => 'input'
 
   = label :user, :email, 'Email'
@@ -11,13 +18,13 @@
   = label :user, :password, 'Password'
   = password_field :user, 'password', :class => 'input'
   
-  = label :user, :password2, 'Confirm Password'
-  = password_field :user, 'password2', :class => 'input'
+  = label :user, :password_confirmation, 'Confirm Password'
+  = password_field :user, 'password_confirmation', :class => 'input'
   %br
   %br
   = submit_tag 'Create User', :class => 'buttongreen'
 
-
+%p.login= link_to 'Log-in', login_path
 
 
 

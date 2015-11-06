@@ -1,27 +1,30 @@
 class UsersController < ApplicationController
+    
+    before_filter :set_current_user, :only=> ['show', 'edit', 'update', 'delete']
+    
     def new
         @User = User.new
     end
     
     def user_params
-       params.require(:user).permit(:name, :email, :password) 
+       params.require(:user).permit(:name, :email, :password, :password_confirmation) 
     end
     
-    def create
-        email = params[:user][:email]
-        if (User.where(:email => email).blank?)
-            if params[:user][:password] == params[:user][:password2]
-                @temp = User.new
-                @user = @temp.create_user user_params
-                flash[:notice]= "Welcome #{@user.name} your username was successfully created."
-                redirect_to buildings_path
-            else
-                flash[:notice] = "You need to confirm your password"
-                redirect_to :back
-            end
-        else
-            flash[:notice] = "Sorry, this email is already taken. Try a different one"
-            redirect_to :back
-        end
+    def show
+        @user=@current_user
+    		if	!current_user?(params[:id])	
+    			flash[:warning]= 'Can only show profile of logged-in user'	
+    		end
     end
+    
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      flash[:notice] = "Sign up successful! Welcome to Iowa City Apartment Finder"
+      redirect_to login_path
+    else
+      render 'new'
+    end  
+  end  
+  
 end

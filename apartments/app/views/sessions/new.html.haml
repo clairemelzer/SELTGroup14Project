@@ -1,11 +1,12 @@
 %h1 Login
 
-=form_tag login_create_path do
-  =label :user, :email, 'E-Mail'
-  =text_field :user, 'email', :class => 'input'
-  =label :user, :password, 'Password'
-  =password_field :user,'password', :class => 'input'
+=form_tag sessions_path, :method => 'post' do
+  =label :session, :email, 'E-Mail'
+  =text_field :session, 'email', :class => 'input'
+  =label :session, :password, 'Password'
+  =password_field :session,'password', :class => 'input'
   %br
   %br
   =submit_tag ' Login to my account', :class => 'buttongreen'
-%p.signup= link_to 'Sign-up for an account', new_user_path
+  
+%p.signup= link_to 'Sign-up for an account', signup_path
