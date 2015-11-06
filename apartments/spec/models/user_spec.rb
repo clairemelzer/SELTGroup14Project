@@ -11,11 +11,9 @@ RSpec.describe User, type: :model do
  it "Is invalid without password" do
      build(:user, password: nil).should_not be_valid
  end
- it "sets a user session token on create_user" do
-     user = User.new
-     user_attributes = {"id"=>1, "name"=>nil, "email"=>"testemail", "password"=>"testpwd123" }
-     user.create_user(user_attributes)
-     expect(user.session_token).to eq(@session_token)
+ it "creates a session token" do
+     user = create(:user)
+     expect(user.session_token).to be_truthy
  end
  
  
