@@ -3,6 +3,10 @@
 Given /^I am on the ApartmentFinder building page$/ do
   visit buildings_path
  end
+ 
+Given /^I am on the ApartmentFinder homepage$/ do
+  visit homepage_path
+ end
 
 
  When /^I have added a building with address "(.*?)" and management "(.*?)"$/ do |address, management|
@@ -23,10 +27,11 @@ Given /^I am on the ApartmentFinder building page$/ do
   expect(result).to be_truthy
  end
  
- Given(/^I have added a building with address "(.*?)" and managemnt "(.*?)"$/) do |address, building|
-  
-end
 
+ When /^I have visited the "(.*?)" page$/ do |address|
+   visit homepage_path
+   click_on "View All Buildings"
+ end
 
  When /^I have visited the Details about "(.*?)" page$/ do |address|
    visit buildings_path
