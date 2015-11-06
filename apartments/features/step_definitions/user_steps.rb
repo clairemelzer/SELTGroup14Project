@@ -31,3 +31,8 @@ end
 When /^I click the Log-out Button$/ do
  click_button "Log Out"
 end
+
+And /^I click on the User Profile button$/ do
+  visit homepage_path 
+  click_button "View Profile"
+end

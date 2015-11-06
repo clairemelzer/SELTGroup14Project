@@ -4,5 +4,6 @@ Scenario:  Click on the "More about " link for a building to view additional inf
   Given I have created a new user with name "Claire" and email "clairetest@email.com" and password "hello" and confirmation "hello"
   Given I have created a new session with email "clairetest@email.com" and password "hello"
   Given I have added a building with address "19 E Burlington St" and management "Apartments Downtown"
-  And I have visited the Details about "19 E Burlington St" page #still can't find details button
+  And I have visited the Details about "19 E Burlington St" page 
+  #still can't find details button
   Then I should see "Details about 19 E Burlington St"
