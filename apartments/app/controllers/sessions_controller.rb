@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       cookies.permanent[:session_token]= user.session_token
+      
       redirect_to buildings_path
     else
       flash.now[:warning] = 'Invalid email/password combination'
