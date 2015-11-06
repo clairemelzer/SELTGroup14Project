@@ -6,20 +6,21 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:user][:email])
-    if user && user.password==params[:user][:password]
-     session[:session_token]=user.session_token
-      redirect_to homepage_path
-    else  
-      flash[:warning] = 'Invalid user-id/e-mail combination'
-      redirect_to login_path
+    user = User.find_by_email(params[:session][:email])
+    if user && user.authenticate(params[:session][:password])
+      cookies.permanent[:session_token]= user.session_token
+      redirect_to buildings_path
+    else
+      flash.now[:warning] = 'Invalid email/password combination'
+      render 'new'
     end  
   end
 
   def destroy
-    reset_session
-    flash[:notice] = "You have been logged out."
-    redirect_to homepage_path
+    cookies.delete(:session_token) 
+    @current_user=nil
+    flash[:notice]= 'You have logged out'
+    redirect_to buildings_path
   end  
 
 end
