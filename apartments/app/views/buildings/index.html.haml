@@ -12,7 +12,7 @@
       %tr
         %td= building.address
         %td= building.management
-        %td= link_to "More about #{building.address}", building_path(building)
+        %td= link_to "More about #{building.address}", building_path(building.id)
 
 %br
 = link_to 'Add new Building', new_building_path
