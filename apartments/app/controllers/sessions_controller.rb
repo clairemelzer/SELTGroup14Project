@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       cookies.permanent[:session_token]= user.session_token
       
-      redirect_to buildings_path
+      redirect_to homepage_path
     else
       flash.now[:warning] = 'Invalid email/password combination'
       render 'new'
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     cookies.delete(:session_token) 
     @current_user=nil
     flash[:notice]= 'You have logged out'
-    redirect_to buildings_path
+    redirect_to homepage_path
   end  
 
 end

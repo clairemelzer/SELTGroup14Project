@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-    validates :email, presence: true, uniqueness:true
-    validates :password, presence: true
+    #validates :email, presence: true, uniqueness:true
+    #validates :password, presence: true
     
   has_secure_password
   before_save {|user| user.email=user.email.downcase}
