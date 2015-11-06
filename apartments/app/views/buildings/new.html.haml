@@ -1,5 +1,12 @@
 %h1 Add a New Building
 
+-unless @building ==nil
+  -if @building.errors.any?
+    %ul
+    -@building.errors.full_messages.each do |msg|
+      %li #{msg}
+     
+
 = form_tag buildings_path do
 
   = label :building, :address, 'Address'

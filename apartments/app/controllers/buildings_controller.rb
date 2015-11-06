@@ -1,5 +1,5 @@
 class BuildingsController < ApplicationController
-  before_filter :set_current_user
+  before_filter :set_current_user, :only=> ['show', 'edit', 'update', 'delete']
 
   def building_params
     params.require(:building).permit(:address, :management)
@@ -21,9 +21,13 @@ class BuildingsController < ApplicationController
   end
 
   def create
-    @building = Building.create!(building_params)
-    flash[:notice] = "#{@building.address} was successfully created."
-    redirect_to buildings_path
+    @building = Building.new(building_params)
+    if @building.save
+      flash[:notice] = "#{@building.address} was successfully created."
+      redirect_to buildings_path
+    else
+      render 'new'
+    end
   end
 
   def edit
