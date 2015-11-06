@@ -9,9 +9,11 @@ RSpec.describe BuildingsController, type: :controller do
     end
     describe "update an existing building" do
         it "render the edit template" do
+            building = FactoryGirl.create(:building)
+            temp = Building.create!(:address => building.address, :management => building.management)
             fake_results = double('building')
-            expect(Building).to receive(:find).and_return(fake_results)
-            get :edit, {:id=> "1"}, {}
+            expect(Building).to receive(:find).and_return(temp)
+            get :edit, {:id => temp.id}
             expect(response). to render_template('edit')
         end
         

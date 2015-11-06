@@ -6,8 +6,8 @@ class BuildingsController < ApplicationController
   end
 
   def show
-    id = params[:id] # retrieve movie ID from URI route
-    @building = Building.find(id) # look up movie by unique ID
+    id = params[:id] # 
+    @building = Building.find(id) # 
 
   end
 
