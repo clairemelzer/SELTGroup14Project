@@ -1,8 +1,7 @@
 - if @current_user == nil
   = button_to "SignUp/Login", login_path, method: :get, :id =>"login", :class => 'buttonblue'
-- else
-  - flash[:notice] = "You are currently logged in as #{@current_user.name}."
-  = button_to "Logout", logout_path, method: :delete, :id => "logout", :class => 'buttonblue'
+
+
 %br
 "Welcome To The Apartment Finder"
 %br

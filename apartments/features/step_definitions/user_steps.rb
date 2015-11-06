@@ -29,12 +29,12 @@ When /^I have created a new session with email "(.*?)" and password "(.*?)"$/ do
 end
 
 When /^I click the Log-out Button$/ do
- click_button "Log Out"
+ click_button "Logout"
 end
 
 And /^I click on the User Profile button$/ do
   visit homepage_path 
-  click_button "View Profile"
+  click_on "View Profile"
 end
 
 Then /^I should see flash message "(.*?)"$/ do |message|

@@ -14,9 +14,10 @@
       - elsif flash[:warning]
         #warning.message= flash[:warning]
       - if @current_user
-        %p You are logged in as #{@current_user.email} (User name: #{@current_user.name})
-        = button_to 'Log Out', logout_path, :method => 'delete'
-        %p.profile= link_to 'View Profile', user_path(@current_user)
+        = button_to "Logout", logout_path, :class => "buttonblue", :method => :delete 
+        - flash[:notice] = "You are logged in as #{@current_user.email} (User name: #{@current_user.name})"
+        = link_to 'View Profile', user_path(@current_user)
+        
         %br
       = yield
       
