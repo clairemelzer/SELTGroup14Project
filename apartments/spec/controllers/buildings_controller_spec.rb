@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'spec_helper'
+require 'buildings_controller'
 
 RSpec.describe BuildingsController, type: :controller do
     describe "creating a new building" do
@@ -8,22 +10,26 @@ RSpec.describe BuildingsController, type: :controller do
         end
     end
     describe "update an existing building" do
-        it "render the edit template" do
-            building = FactoryGirl.create(:building)
-            temp = Building.create!(:address => building.address, :management => building.management)
-            fake_results = double('building')
-            expect(Building).to receive(:find).and_return(temp)
-            get :edit, {:id => temp.id}
-            expect(response). to render_template('edit')
+        before(:each) do
+            building = create(:building)
+            @temp =  Building.create!(:address => building.address, :management => building.management)
         end
         
+        #implement when edit buildings functionality added, should redirect to login for now
+        it "render the edit template" do
+            #expect(Building).to receive(:find).and_return(@temp)
+            get :edit, {:id => @temp.id}
+            expect(response).to redirect_to(login_path)
+            #expect(response).to redirect_to('/buildings/edit')
+        end
+        
+        #implement when edit buildings functionality added, should redirect to login for now
         it "should update that building attributes " do
-            fake_building = Building.new
-            fake_results = double('building')
-            expect(Building).to receive(:find).and_return(fake_building)
-            #expect(ActiveRecord).to receive(:update_attributes!).and_return(fake_results)
-            get :update
-            expect(response).to render_template('show')
+            
+            #expect(Building).to receive(:find).and_return(fake_building)
+            get :update, {:id => @temp.id}
+            expect(response).to redirect_to(login_path)
+            #expect(response).to redirect_to('/buildings/edit')
         end
     end
     
