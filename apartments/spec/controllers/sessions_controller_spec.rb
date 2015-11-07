@@ -10,13 +10,6 @@ RSpec.describe SessionsController, type: :controller do
         end
     end
     
-    describe "logging out of account" do
-        it "redirects to buildings_path" do
-           get :destroy
-           expect(response).to redirect_to(buildings_path)
-        end
-    end
-    
     describe "destroy" do
         before(:each) do
             user = create(:user)
@@ -56,7 +49,7 @@ RSpec.describe SessionsController, type: :controller do
         end
         
         it "redirects to buildings_path on valid login" do
-            expect(response).to redirect_to(buildings_path)
+            expect(response).to redirect_to(homepage_path)
         end
     end
     describe "create with invalid login" do
