@@ -23,7 +23,7 @@ RSpec.describe SessionsController, type: :controller do
             expect(cookies[:session_token]).to be_nil
         end
         it "removes the current user" do
-            expect(@current_user).to_not be_nil
+            expect(assigns(@current_user)).to_not be_nil
             
             get :destroy
             expect(@current_user).to be_nil
@@ -45,7 +45,7 @@ RSpec.describe SessionsController, type: :controller do
             expect(cookies[:session_token]).to_not be_nil
         end
         it "creates a current user on valid login" do
-            expect(@current_user).to_not be_nil
+            expect(assigns(@current_user)).to_not be_nil
         end
         
         it "redirects to buildings_path on valid login" do
