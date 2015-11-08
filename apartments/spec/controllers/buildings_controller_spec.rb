@@ -8,6 +8,10 @@ RSpec.describe BuildingsController, type: :controller do
             post :create, :building => {:address => "324 test st", :management=> "ANC"}
             expect(assigns(:building)).to be_truthy
         end
+        it 'should render the new template with bad parameters' do
+            post :create, :building => {:address => "", :management=> ""}
+            expect(response).to render_template('new')
+        end
     end
     describe "update an existing building" do
         before(:each) do
