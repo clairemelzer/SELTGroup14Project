@@ -17,6 +17,9 @@ ActiveRecord::Schema.define(version: 20151112144624) do
     t.integer  "building_id"
     t.integer  "user_id"
     t.integer  "apartment_number"
+    t.integer  "bedrooms"
+    t.integer  "bathrooms"
+    t.integer  "rent"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

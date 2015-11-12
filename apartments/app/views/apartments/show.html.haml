@@ -1,0 +1,23 @@
+%h2 Details about Apartment Number #{@apartment.apartment_number}
+
+
+%ul#details
+  %li
+    Number of Bedrooms:
+    = @apartment.bedrooms
+     Number of Bathrooms:
+    = @apartment.bathrooms
+     Rent Cost:
+    = @apartment.rent
+
+
+%h3 Pictures:
+
+
+
+%br
+= link_to 'Edit This Apartment', edit_building_apartment_path(@apartment)
+%br
+= button_to 'Delete', building_apartment_path(@apartment), :method => :delete, :confirm => 'Are you sure?'
+%br
+

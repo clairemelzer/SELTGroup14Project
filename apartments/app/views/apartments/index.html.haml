@@ -1,0 +1,15 @@
+%h1 All Apartments
+
+%table#apartments
+  %thead
+    %tr
+      %th Apartment Number
+  %tbody
+    - @apartments.each do |apartments|
+      %tr
+        %td= apartment.apartment_number
+        %td= link_to "More about Apartment Number #{apartment.apartment_address}", building_apartment_path(apartment.id)
+
+%br
+= link_to 'Add new Apartment', new_building_apartment_path
+

@@ -1,0 +1,25 @@
+
+
+%h1 Edit Existing Apartment
+
+= form_tag building_apartment_path(@apartment), :method => :put do
+
+  = label :apartment, :apartment_number, 'Apartment Number'
+  = text_field :apartment, 'apartment_number'
+  %br
+  %br
+  = label :apartment, :bedrooms, 'Bedrooms'
+  = text_field :apartment, 'bedrooms'
+  %br
+  %br
+    = label :apartment, :bathrooms, 'Bathrooms'
+  = text_field :apartment, 'bathrooms'
+  %br
+  %br
+    = label :apartment, :rent, 'Rent'
+  = text_field :apartment, 'rent'
+  %br
+  %br
+  
+
+  = submit_tag 'Update Apartment Info'
