@@ -2,18 +2,16 @@ class ApartmentsController < ApplicationController
   before_filter :set_current_user
   before_filter :has_user_and_building, only:[:new,:create]
   
-  # GET /apartments
-  # GET /apartments.json
+
   def index
     @apartments = Apartment.all
   end
 
-  # GET /apartments/1
-  # GET /apartments/1.json
+
   def show
   end
 
-  # GET /apartments/new
+
   def new
     @apartment = Apartment.new
   end

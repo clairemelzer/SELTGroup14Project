@@ -4,11 +4,18 @@
   %thead
     %tr
       %th Apartment Number
+      %th Bedrooms
+      %th Bathrooms
+      %th Rent
+      %th More Info
   %tbody
-    - @apartments.each do |apartments|
+    - @apartments.each do |apartment|
       %tr
         %td= apartment.apartment_number
-        %td= link_to "More about Apartment Number #{apartment.apartment_address}", building_apartment_path(apartment.id)
+        %td= apartment.bedrooms
+        %td= apartment.bathrooms
+        %td= apartment.rent
+       
 
 %br
 = link_to 'Add new Apartment', new_building_apartment_path
