@@ -5,13 +5,15 @@ class SessionsController < ApplicationController
     # default: render 'new' template for session--i.e. login screen
   end
 
+
   def create
     user = User.find_by_email(params[:session][:email])
     
     if user && user.authenticate(params[:session][:password])
       cookies.permanent[:session_token]= user.session_token
-      
+     
       redirect_to homepage_path
+      flash[:warning]= "Succesful Login! Welcome #{user.name}!"
     else
       flash.now[:warning] = 'Invalid email/password combination'
       render 'new'

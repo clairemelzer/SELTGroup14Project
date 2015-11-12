@@ -1,5 +1,5 @@
 class BuildingsController < ApplicationController
-  before_filter :set_current_user, :only=> ['edit', 'update', 'delete']
+  before_filter :set_current_user#, :only=> ['edit', 'update', 'delete']
 
   def building_params
     params.require(:building).permit(:address, :management)
@@ -18,6 +18,10 @@ class BuildingsController < ApplicationController
 
   def new
     # default: render 'new' template
+    if !@current_user
+      redirect_to buildings_path 
+      flash[:warning]= 'Can only add building if you are signed in!'
+    end
   end
 
   def create
@@ -31,6 +35,11 @@ class BuildingsController < ApplicationController
   end
 
   def edit
+     @building = Building.find params[:id]
+    if !@current_user
+      redirect_to buildings_path(@building)
+      flash[:warning]= 'Can only edit building if you are signed in!'
+    end
     @building = Building.find params[:id]
   end
 
@@ -42,10 +51,17 @@ class BuildingsController < ApplicationController
   end
 
   def destroy
+     @building = Building.find params[:id]
+    if !@current_user
+      redirect_to buildings_path(@building) 
+      flash[:warning]= 'Can only delete building if you are signed in!'
+  else
     @building = Building.find(params[:id])
     @building.destroy
     flash[:notice] = "Building '#{@building.address}' deleted."
     redirect_to buildings_path
+  end
+  
   end
 
 end

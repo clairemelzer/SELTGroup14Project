@@ -1,0 +1,16 @@
+
+
+%h1 Edit Existing Building
+
+= form_tag building_path(@building), :method => :put do
+
+  = label :building, :address, 'Address'
+  = text_field :building, 'address'
+  %br
+  %br
+  = label :building, :management, 'Management Company'
+  = text_field :building, 'management'
+  %br
+  %br
+
+  = submit_tag 'Update Building Info'
