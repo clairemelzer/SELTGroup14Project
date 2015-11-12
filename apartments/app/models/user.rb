@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
     #validates :email, presence: true, uniqueness:true
     #validates :password, presence: true
     
+    has_many :apartments
+    has_many :buildings, :through => :apartments
+    
   has_secure_password
   before_save {|user| user.email=user.email.downcase}
   before_save :create_session_token

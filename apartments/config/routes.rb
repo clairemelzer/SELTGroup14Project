@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
     
-  resources :buildings
+  resources :buildings do
+    resources :apartments
+  end
   root :to => redirect('/homepage')
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
