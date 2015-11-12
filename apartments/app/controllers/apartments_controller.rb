@@ -1,6 +1,7 @@
 class ApartmentsController < ApplicationController
-  before_action :set_apartment, only: [:show, :edit, :update, :destroy]
-
+  before_filter :set_current_user
+  before_filter :has_user_and_building, only:[:new,:create]
+  
   # GET /apartments
   # GET /apartments.json
   def index
@@ -26,14 +27,11 @@ class ApartmentsController < ApplicationController
   def create
     @apartment = Apartment.new(apartment_params)
 
-    respond_to do |format|
-      if @apartment.save
-        format.html { redirect_to @apartment, notice: 'Apartment was successfully created.' }
-        format.json { render :show, status: :created, location: @apartment }
-      else
-        format.html { render :new }
-        format.json { render json: @apartment.errors, status: :unprocessable_entity }
-      end
+    if @apartment.save
+      flash[:notice] = "Apartment was sucessfully created."
+      redirect_to building_apartments_path
+    else
+      redirect :back
     end
   end
 
@@ -61,14 +59,23 @@ class ApartmentsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_apartment
-      @apartment = Apartment.find(params[:id])
+  def has_user_and_building
+    unless @current_user
+      flash[:notice] = 'You must be logged in to create a review.'
+      redirect_to login_path
     end
+    unless (@building = Building.find_by_id(params[:building_id]))
+      redirect_to buildings_path
+    end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def apartment_params
-      params.require(:apartment).permit(:building_id, :user_id, :apartment_number)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_apartment
+    @apartment = Apartment.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def apartment_params
+    params.require(:apartment).permit(:building_id, :user_id, :apartment_number)
+  end
 end

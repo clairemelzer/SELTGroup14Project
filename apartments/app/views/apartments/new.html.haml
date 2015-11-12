@@ -1,0 +1,11 @@
+%h1 Add a New Apartment
+
+= form_tag building_apartments_path do
+
+    =label :apartment, :apartment_number, 'Apartment Number'
+    =text_field :apartment, 'apartment_number', :class => 'input'
+    
+    %br
+    %br
+    
+    =submit_tag 'Add Apartment', :class => 'buttongreen'

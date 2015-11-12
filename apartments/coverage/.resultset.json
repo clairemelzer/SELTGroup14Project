@@ -1,6 +1,10 @@
 {
   "RSpec": {
     "coverage": {
+      "/home/ubuntu/workspace/SELTGroup14Project/apartments/app/helpers/apartments_helper.rb": [
+        1,
+        null
+      ],
       "/home/ubuntu/workspace/SELTGroup14Project/apartments/app/helpers/application_helper.rb": [
         1,
         null
@@ -270,7 +274,9 @@
         null,
         1,
         1,
-        0,
+        null,
+        1,
+        1,
         null,
         null,
         null,
@@ -297,6 +303,8 @@
         1,
         1,
         null,
+        1,
+        1,
         null
       ],
       "/home/ubuntu/workspace/SELTGroup14Project/apartments/spec/models/user_spec.rb": [
@@ -339,6 +347,9 @@
         null,
         null,
         1,
+        1,
+        null,
+        1,
         17,
         1,
         1,
@@ -355,6 +366,6 @@
         null
       ]
     },
-    "timestamp": 1447313022
+    "timestamp": 1447344937
   }
 }

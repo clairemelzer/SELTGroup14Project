@@ -36,7 +36,7 @@ RSpec.describe UsersController, type: :controller do
         end
         
         it "renders the profile page" do
-            pending
+           pending
             #not sure how to fix failed rspec test
            get :show, {:id => @current_user.id}
            expect(response).to render_template('show')
