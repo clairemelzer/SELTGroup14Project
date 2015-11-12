@@ -26,12 +26,14 @@ RSpec.describe BuildingsController, type: :controller do
         
         #implement when edit buildings functionality added, should redirect to login for now
         it "render the edit template" do
-            pending
             #need to implement user sign in for @currentuser to = 1, otherwise it will redirect to buildings path
-           
+            expect(User).to receive(:find_by_session_token).and_return(true)
+            request.cookies['session_token'] = "asdf"
+            
             get :edit, {:id => @temp.id}
             #expect(response).to redirect_to(login_path)
-            expect(response).to redirect_to('/buildings/edit.'+@temp.id.to_s)
+            #expect(response).to redirect_to('/buildings/edit.'+@temp.id.to_s)
+            expect(response).to render_template('edit')
         end
         
         #implement when edit buildings functionality added, should redirect to login for now

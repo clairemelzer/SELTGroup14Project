@@ -32,11 +32,11 @@ RSpec.describe UsersController, type: :controller do
         before(:each) do
             user = create(:user)
             @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)
-            cookies[:session_token]=@current_user.session_token
+            expect(User).to receive(:find_by_session_token).and_return(true)
+            request.cookies['session_token'] = "asdf"
         end
         
         it "renders the profile page" do
-           pending
             #not sure how to fix failed rspec test
            get :show, {:id => @current_user.id}
            expect(response).to render_template('show')

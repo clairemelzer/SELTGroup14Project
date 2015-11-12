@@ -14,14 +14,14 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-11-12T16:15:37+00:00">2015-11-12T16:15:37+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-11-12T16:41:57+00:00">2015-11-12T16:41:57+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">97.46%</span></span>
+    (<span class="covered_percent"><span class="green">96.95%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -33,8 +33,8 @@
   <div>
     <b>13</b> files in total.
     <b>197</b> relevant lines. 
-    <span class="green"><b>192</b> lines covered</span> and
-    <span class="red"><b>5</b> lines missed </span>
+    <span class="green"><b>191</b> lines covered</span> and
+    <span class="red"><b>6</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -152,11 +152,11 @@
       
       <tr>
         <td class="strong"><a href="#05f4de4a6dbe62c8827f1aff1b3e7ca4ba4c47d6" class="src_link" title="spec/controllers/users_controller_spec.rb">spec/controllers/users_controller_spec.rb</a></td>
-        <td class="green strong">100.0 %</td>
+        <td class="green strong">96.55 %</td>
         <td>46</td>
         <td>29</td>
-        <td>29</td>
-        <td>0</td>
+        <td>28</td>
+        <td>1</td>
         <td>1.0</td>
       </tr>
       
@@ -546,14 +546,14 @@
           <code class="ruby">    if !@current_user</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="40">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="40">
+          <span class="hits">1</span>
           
           <code class="ruby">      redirect_to buildings_path(@building)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="41">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="41">
+          <span class="hits">1</span>
           
           <code class="ruby">      flash[:warning]= &#39;Can only edit building if you are signed in!&#39;</code>
         </li>
@@ -1855,11 +1855,11 @@
         <div class="source_table" id="05f4de4a6dbe62c8827f1aff1b3e7ca4ba4c47d6">
   <div class="header">
     <h3>spec/controllers/users_controller_spec.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h4><span class="green">96.55 %</span> covered</h4>
     <div>
       <b>29</b> relevant lines. 
-      <span class="green"><b>29</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <span class="green"><b>28</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
     </div>
   </div>
   
@@ -2073,31 +2073,31 @@
         <li class="covered" data-hits="1" data-linenumber="35">
           <span class="hits">1</span>
           
-          <code class="ruby">            cookies[:session_token]=@current_user.session_token</code>
+          <code class="ruby">            expect(User).to receive(:find_by_session_token).and_return(true)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="36">
+        <li class="covered" data-hits="1" data-linenumber="36">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">        end</code>
+          <code class="ruby">            request.cookies[&#39;session_token&#39;] = &quot;asdf&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="37">
           
           
-          <code class="ruby">        </code>
+          <code class="ruby">        end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="38">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="38">
           
-          <code class="ruby">        it &quot;renders the profile page&quot; do</code>
+          
+          <code class="ruby">        </code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="39">
           <span class="hits">1</span>
           
-          <code class="ruby">           pending</code>
+          <code class="ruby">        it &quot;renders the profile page&quot; do</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="40">
@@ -2112,8 +2112,8 @@
           <code class="ruby">           get :show, {:id =&gt; @current_user.id}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="42">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="42">
+          
           
           <code class="ruby">           expect(response).to render_template(&#39;show&#39;)</code>
         </li>
