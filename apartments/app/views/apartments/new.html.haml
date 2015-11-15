@@ -2,23 +2,21 @@
 
 = form_tag building_apartments_path do
 
-    =label :apartment, :apartment_number, 'Apartment Number'
-    =text_field :apartment, 'apartment_number', :class => 'input'
+  =label :apartment, :apartment_number, 'Apartment Number'
+  =text_field :apartment, 'apartment_number', :class => 'input'
+  %br
+  %br
+  =label :apartment, :bedrooms, 'Bedrooms'
+  =text_field :apartment, 'bedrooms', :class => 'input'
+  %br
+  %br
+  =label :apartment, :bathrooms, 'Bathrooms'
+  =text_field :apartment, 'bathrooms', :class => 'input'
+  %br
+  %br
+  =label :apartment, :rent, 'Rent'
+  =text_field :apartment, 'rent', :class => 'input'
+  %br
+  %br
     
-    %br
-    %br
-    
-    = label :apartment, :bedrooms, 'Bedrooms'
-    = text_field :apartment, 'bedrooms', :class => 'input'
-    %br
-    %br
-    = label :apartment, :bathrooms, 'Bathrooms'
-    = text_field :apartment, 'bathrooms', :class => 'input'
-    %br
-    %br
-    = label :apartment, :rent, 'Rent'
-    = text_field :apartment, 'rent', :class => 'input'
-    %br
-    %br
-    
-    =submit_tag 'Add Apartment', :class => 'buttongreen'
+  =submit_tag 'Add Apartment', :class => 'buttongreen'

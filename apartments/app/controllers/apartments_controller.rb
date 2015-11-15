@@ -36,25 +36,25 @@ class ApartmentsController < ApplicationController
   # PATCH/PUT /apartments/1
   # PATCH/PUT /apartments/1.json
   def update
-    respond_to do |format|
-      if @apartment.update(apartment_params)
-        format.html { redirect_to @apartment, notice: 'Apartment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @apartment }
-      else
-        format.html { render :edit }
-        format.json { render json: @apartment.errors, status: :unprocessable_entity }
-      end
-    end
+    @apartment = Apartment.find params[:id]
+    @apartment.update_attributes!(apartment_params)
+    flash[:notice] = "#{@apartment.apartment_number} was successfully updated."
+    redirect_to buildings_path
   end
 
   # DELETE /apartments/1
   # DELETE /apartments/1.json
   def destroy
+   @apartment = Apartment.find params[:id]
+    if !@current_user
+      redirect :back
+      flash[:warning]= 'Can only delete apartment if you are signed in!'
+  else
+    @apartment = Apartment.find(params[:id])
     @apartment.destroy
-    respond_to do |format|
-      format.html { redirect_to apartments_url, notice: 'Apartment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:notice] = "Apartment Number '#{@apartment.apartment_number}' deleted."
+    redirect_to buildings_path
+  end
   end
 
   def has_user_and_building
@@ -74,6 +74,6 @@ class ApartmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def apartment_params
-    params.require(:apartment).permit(:building_id, :user_id, :apartment_number)
+    params.require(:apartment).permit(:building_id, :user_id, :apartment_number, :bedrooms, :bathrooms, :rent)
   end
 end

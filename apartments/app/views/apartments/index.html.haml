@@ -15,6 +15,7 @@
         %td= apartment.bedrooms
         %td= apartment.bathrooms
         %td= apartment.rent
+        %td= link_to "More about apartment number #{apartment.apartment_number}",  building_apartment_path(1,apartment.apartment_number)
        
 
 %br

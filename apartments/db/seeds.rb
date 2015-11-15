@@ -13,3 +13,9 @@ buildings = [{:address => '319 Court St', :management => "Hawkeye Campus Propert
 buildings.each do |building|
   Building.create!(building)
 end
+
+apartments = [{:apartment_number => "1", :bedrooms => "1", :bathrooms => "1", :rent => "850"}]
+
+apartments.each do |apartment|
+  Apartment.create!(apartment)
+end
