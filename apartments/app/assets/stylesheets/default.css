@@ -50,6 +50,23 @@ table#building th, table#buildings td {
   padding: 4px;
   text-align: left;
 }
+
+table#apartments {
+  margin: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+table#apartments th {
+  border: 2px solid white;
+  font-weight: bold;
+  background-color: gold;
+}
+table#apartment th, table#apartments td {
+  padding: 4px;
+  text-align: left;
+}
+
 #notice #warning {
   background: red;
   margin: 1em 0;
