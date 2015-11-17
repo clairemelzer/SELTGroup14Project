@@ -3,11 +3,11 @@
 
 %ul#details
   %li
-    Number of Bedrooms:
+    Number of Bedrooms: #{@apartment.bedrooms}
   %li
-    Number of Bathrooms:
+    Number of Bathrooms: #{@apartment.bathrooms}
   %li
-    Rent Cost:
+    Rent Cost: #{@apartment.rent}
    
 
 
@@ -19,8 +19,8 @@
 
 %br
 %br
-= link_to 'Edit This Apartment', edit_building_apartment_path(1, 6)
+= link_to 'Edit This Apartment', edit_building_apartment_path(building_id:@building_id, id:@apartment.id)
 %br
-= button_to 'Delete', building_apartment_path(1,6), :method => :delete, :confirm => 'Are you sure?'
+= button_to 'Delete', building_apartment_path(building_id:@building_id, id:@apartment.id), :method => :delete, :confirm => 'Are you sure?'
 %br
 

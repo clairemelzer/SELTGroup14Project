@@ -9,6 +9,8 @@ class ApartmentsController < ApplicationController
 
 
   def show
+    @apartment = Apartment.find(params[:id])
+    @building_id = params[:building_id]
   end
 
 
@@ -25,6 +27,7 @@ class ApartmentsController < ApplicationController
   def create
     @apartment = Apartment.new(apartment_params)
 
+    @apartment.building_id = params[:building_id]
     if @apartment.save
       flash[:notice] = "Apartment was sucessfully created."
       redirect_to building_apartments_path

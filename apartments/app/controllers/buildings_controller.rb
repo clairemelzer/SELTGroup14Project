@@ -9,6 +9,7 @@ class BuildingsController < ApplicationController
     id = params[:id] # 
     @building = Building.find(id) # 
 
+    @apartments = Apartment.where(building_id:id)
   end
 
   def index
