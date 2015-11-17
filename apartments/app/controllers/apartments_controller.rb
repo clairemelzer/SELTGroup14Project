@@ -20,6 +20,12 @@ class ApartmentsController < ApplicationController
 
   # GET /apartments/1/edit
   def edit
+         
+    @apartment = Apartment.find params[:id]
+    if !@current_user
+      redirect_to building_apartment_path(@building_id, @apartment)
+      flash[:warning]= 'Can only edit apartment if you are signed in!'
+    end
   end
 
   # POST /apartments
