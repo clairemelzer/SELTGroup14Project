@@ -1,4 +1,4 @@
-%h2 Details about Apartment Number
+%h2 Details about Apartment Number #{@apartment.apartment_number}
 
 
 %ul#details
@@ -23,4 +23,5 @@
 %br
 = button_to 'Delete', building_apartment_path(building_id:@building_id, id:@apartment.id), :method => :delete, :confirm => 'Are you sure?'
 %br
+
 

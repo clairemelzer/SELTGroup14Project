@@ -26,11 +26,11 @@ class ApartmentsController < ApplicationController
   # POST /apartments.json
   def create
     @apartment = Apartment.new(apartment_params)
-
+    @building_id = params[:building_id]
     @apartment.building_id = params[:building_id]
     if @apartment.save
       flash[:notice] = "Apartment was sucessfully created."
-      redirect_to building_apartments_path
+      redirect_to building_path(@building_id)
     else
       redirect :back
     end
@@ -39,10 +39,12 @@ class ApartmentsController < ApplicationController
   # PATCH/PUT /apartments/1
   # PATCH/PUT /apartments/1.json
   def update
+   
     @apartment = Apartment.find params[:id]
+    @building_id = params[:building_id]
     @apartment.update_attributes!(apartment_params)
     flash[:notice] = "#{@apartment.apartment_number} was successfully updated."
-    redirect_to buildings_path
+    redirect_to building_apartment_path(@building_id, @apartment)
   end
 
   # DELETE /apartments/1
@@ -54,9 +56,10 @@ class ApartmentsController < ApplicationController
       flash[:warning]= 'Can only delete apartment if you are signed in!'
   else
     @apartment = Apartment.find(params[:id])
+    @building_id = params[:building_id]
     @apartment.destroy
     flash[:notice] = "Apartment Number '#{@apartment.apartment_number}' deleted."
-    redirect_to buildings_path
+    redirect_to building_path(@building_id)
   end
   end
 
