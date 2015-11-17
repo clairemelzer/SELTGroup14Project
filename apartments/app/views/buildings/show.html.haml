@@ -7,6 +7,18 @@
   %li
     Managment Company:
     = @building.management
+  %li
+    Number of Apartments:
+    = @building.number_apartments
+  %li 
+    Number of building washer/dryer machines:
+    = @building.laundry
+  %li 
+    Parking available:
+    = @building.parking
+  %li
+    Pets allowed:
+    = @building.pets
 
 
 %h3 Pictures:
@@ -29,7 +41,7 @@
         %td= apartment.apartment_number
         %td= apartment.bedrooms
         %td= apartment.bathrooms
-        %td= apartment.rent
+        %td= "$"+ apartment.rent.to_s
         %td= link_to "More about apartment number #{apartment.apartment_number}",  building_apartment_path(building_id:@building.id,id:apartment.id)
 
 

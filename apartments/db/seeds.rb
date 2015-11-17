@@ -6,9 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-buildings = [{:address => '319 Court St', :management => "Hawkeye Campus Properties", id:1},
-    	  {:address => '19 E Burlington St', :management => "Apartments Downtown", id:2},
-    	  {:address => '408 S Van Buren St', :management => "Apartments Downtown", id:3}]
+buildings = [{:address => '319 Court St', :management => "Hawkeye Campus Properties", pets:"cats", laundry:4, number_apartments:12, parking:"onstreet", id:1},
+    	  {:address => '19 E Burlington St', :management => "Apartments Downtown", pets:"dogs", laundry:6, number_apartments:12, parking:"garage", id:2},
+    	  {:address => '408 S Van Buren St', :management => "Apartments Downtown", pets:"none", laundry:8, number_apartments:24, parking:"none",id:3}]
 
 buildings.each do |building|
   Building.create!(building)
