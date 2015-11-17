@@ -2,7 +2,7 @@
 
 %h1 Edit Existing Apartment
 
-= form_tag building_apartment_path(1,6), :method => :put do
+= form_tag building_apartment_path(building_id:params[:building_id], id:params[:id]), :method => :put do
 
   = label :apartment, :apartment_number, 'Apartment Number'
   = text_field :apartment, 'apartment_number'

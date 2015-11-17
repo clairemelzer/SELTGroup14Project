@@ -29,7 +29,7 @@
         %td= apartment.bedrooms
         %td= apartment.bathrooms
         %td= apartment.rent
-        -#%td= link_to "More about apartment number #{apartment.apartment_number}",  building_apartment_path(@building.id)
+        %td= link_to "More about apartment number #{apartment.apartment_number}",  building_apartment_path(building_id:@building.id,id:apartment.id)
 
 %br
 %br

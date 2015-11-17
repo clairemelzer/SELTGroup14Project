@@ -9,6 +9,8 @@ class ApartmentsController < ApplicationController
 
 
   def show
+    @apartment = Apartment.find(params[:id])
+    @building_id = params[:building_id]
   end
 
 
