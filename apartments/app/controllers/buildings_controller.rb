@@ -40,7 +40,7 @@ class BuildingsController < ApplicationController
       redirect_to buildings_path(@building)
       flash[:warning]= 'Can only edit building if you are signed in!'
     end
-    @building = Building.find params[:id]
+    
   end
 
   def update
