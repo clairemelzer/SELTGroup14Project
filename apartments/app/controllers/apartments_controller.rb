@@ -35,7 +35,7 @@ class ApartmentsController < ApplicationController
     @building_id = params[:building_id]
     @apartment.building_id = params[:building_id]
     if @apartment.save
-      flash[:notice] = "Apartment was sucessfully created."
+      flash[:notice] = "Apartment #{@apartment.apartment_number} was sucessfully created."
       redirect_to building_path(@building_id)
     else
       redirect :back
@@ -49,7 +49,7 @@ class ApartmentsController < ApplicationController
     @apartment = Apartment.find params[:id]
     @building_id = params[:building_id]
     @apartment.update_attributes!(apartment_params)
-    flash[:notice] = "#{@apartment.apartment_number} was successfully updated."
+    flash[:notice] = "Apartment Number #{@apartment.apartment_number} was successfully updated."
     redirect_to building_apartment_path(@building_id, @apartment)
   end
 
