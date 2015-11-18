@@ -7,6 +7,7 @@ class CreateApartments < ActiveRecord::Migration
       t.integer :bedrooms
       t.integer :bathrooms
       t.integer :rent
+      t.integer :laundry_in_unit
 
       t.timestamps null: false
     end
