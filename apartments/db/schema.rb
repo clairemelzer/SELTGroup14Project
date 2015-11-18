@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20151118201912) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
 
-    t.string   "laundry"
+
 
     t.integer  "monthly_util"
     t.boolean  "central_air"
