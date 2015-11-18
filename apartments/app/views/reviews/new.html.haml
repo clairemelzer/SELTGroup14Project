@@ -1,0 +1,14 @@
+%h1 Add a new Review
+
+= form_tag building_apartment_reviews_path do
+
+    =label :review, :comments, 'Comments'
+    =text_field :review, 'comments', :class => 'input'
+    %br
+    %br
+    = label :review, :rating, 'Rating'
+    = select :review, 'rating', options_for_select(1..10)
+    %br
+    %br
+    =submit_tag 'Add Review', :class => 'buttongreen'
+    

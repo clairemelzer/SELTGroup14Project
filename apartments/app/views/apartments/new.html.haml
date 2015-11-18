@@ -23,4 +23,17 @@
   %br
   %br
     
+  = label :apartment, :monthly_util, 'Average Monthly Utilities'
+  =text_field :apartment, 'monthly_util', :class => 'input'
+  %br
+  %br
+  =label :apartment, :balcony, 'Balcony'
+  =check_box :apartment, 'balcony'
+  %br
+  %br
+  =label :apartment, :central_air, 'Central Air'
+  =check_box :apartment, 'central_air'
+  %br
+  %br
+  
   =submit_tag 'Add Apartment', :class => 'buttongreen'
