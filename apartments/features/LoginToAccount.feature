@@ -17,3 +17,9 @@ Scenario: Succesful Log-out
   And I am on the ApartmentFinder homepage
   And I click the Log-out Button
   Then I should see "You have logged out"
+  
+
+Scenario: Unsuccesful Login wrong username or password combo
+  Given I have created a new user with name "Claire" and email "clairetest@email.com" and password "hello1" and confirmation "hello1"
+  Given I have created a new session with email "clairetest@email.com" and password "hello2"
+  Then I should see "Invalid email/password combination"

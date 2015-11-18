@@ -32,6 +32,11 @@ Given /^I am on the ApartmentFinder homepage$/ do
    click_on "View All Buildings"
  end
  
+  When /^I have clicked on add new building$/ do
+   visit buildings_path
+   click_on "Add new Building"
+ end
+ 
   When /^I have visited the homepage$/ do 
    visit buildings_path
    click_on "Return to Homepage"
