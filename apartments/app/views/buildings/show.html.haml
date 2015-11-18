@@ -52,6 +52,6 @@
 %br
 = link_to 'Add Apartment for Building', new_building_apartment_path(@building.id)
 %br
-= button_to 'Delete', building_path(@building), :method => :delete, :confirm => 'Are you sure?'
+= button_to 'Delete', building_path(@building), :class => "buttonred", :method => :delete, :confirm => 'Are you sure?'
 %br
 

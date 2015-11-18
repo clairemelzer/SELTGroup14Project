@@ -33,5 +33,9 @@
   =check_box :apartment, 'central_air'
   %br
   %br
+  =label :apartment, :laundry_in_unit, 'Laundry In Unit?'
+  =check_box :apartment, 'laundry_in_unit'
+  %br
+  %br
 
-  = submit_tag 'Update Apartment Info'
+  = submit_tag 'Update Apartment Info', :class => 'buttongreen'

@@ -10,7 +10,6 @@
     Rent Cost: #{@apartment.rent}
   %li
 
-    Laundry in Unit? #{@apartment.laundry}
 
     Average Monthly Utilities: #{@apartment.monthly_util}
   %li 
@@ -21,7 +20,10 @@
     Central Air:
     -if (@apartment.central_air) then @result="yes" else @result="no" end
     #{@result}
-
+  %li
+    Laundry in Unit?
+    -if (@apartment.laundry_in_unit) then @result="yes" else @result="no" end
+    #{@result}
    
 
 
@@ -50,7 +52,7 @@
 %br
 = link_to 'Edit This Apartment', edit_building_apartment_path(building_id:@building_id, id:@apartment.id)
 %br
-= button_to 'Delete', building_apartment_path(building_id:@building_id, id:@apartment.id), :method => :delete, :confirm => 'Are you sure?'
+= button_to 'Delete', building_apartment_path(building_id:@building_id, id:@apartment.id) , :class => "buttonred", :method => :delete, :confirm => 'Are you sure?'
 %br
 
 
