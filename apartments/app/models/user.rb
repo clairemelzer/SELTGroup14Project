@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
     
     has_many :apartments
     has_many :buildings, :through => :apartments
+    has_many :reviews, :through => :apartments
     
   has_secure_password
   before_save {|user| user.email=user.email.downcase}

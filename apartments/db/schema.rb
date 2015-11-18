@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118192926) do
+ActiveRecord::Schema.define(version: 20151118201912) do
 
   create_table "apartments", force: :cascade do |t|
     t.integer  "building_id"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 20151118192926) do
     t.integer  "laundry"
     t.string   "parking"
     t.integer  "number_apartments"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string  "comments"
+    t.integer "rating"
+    t.string  "user_name"
+    t.integer "apartment_id"
   end
 
   create_table "users", force: :cascade do |t|

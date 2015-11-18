@@ -23,9 +23,22 @@
 
 %h3 Pictures:
 
-
-
+%h3 Reviews:
+%table#reviews
+  %thead
+    %tr 
+      %th Name
+      %th Comments
+      %th Rating (1-10)
+  %tbody
+    - @reviews.each do |review|
+      %tr
+        %td= review.user_name
+        %td= review.comments
+        %td= review.rating.to_s
 %br
+%br
+= link_to 'Add review for this apartment', new_building_apartment_review_path(building_id:@building_id, apartment_id:@apartment.id)
 
 %br
 %br

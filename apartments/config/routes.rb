@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
     
   resources :buildings do
-    resources :apartments
+    resources :apartments do
+      resources :reviews
+    end
   end
   root :to => redirect('/homepage')
   resources :users
