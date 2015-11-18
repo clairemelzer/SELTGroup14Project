@@ -6,3 +6,8 @@ Scenario:  Add a new building (Declarative)
  When I have added a building with address "305 S Summit St" and management "Independent" 
   And I am on the ApartmentFinder building page  
   Then I should see a building list entry with address "305 S Summit St" and management "Independent"
+  
+Scenario: Trying to add a building while not logged on
+  Given I am on the ApartmentFinder building page  
+  And I have clicked on add new building
+  Then I should see "Can only add building if you are signed in!"
