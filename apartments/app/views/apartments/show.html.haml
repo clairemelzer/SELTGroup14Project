@@ -8,6 +8,16 @@
     Number of Bathrooms: #{@apartment.bathrooms}
   %li
     Rent Cost: #{@apartment.rent}
+  %li
+    Average Monthly Utilities: #{@apartment.monthly_util}
+  %li 
+    Balcony: 
+    -if (@apartment.balcony) then @result="yes" else @result="no" end
+    #{@result}
+  %li
+    Central Air:
+    -if (@apartment.central_air) then @result="yes" else @result="no" end
+    #{@result}
    
 
 

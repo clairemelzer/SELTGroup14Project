@@ -60,13 +60,13 @@ class ApartmentsController < ApplicationController
     if !@current_user
       redirect :back
       flash[:warning]= 'Can only delete apartment if you are signed in!'
-  else
-    @apartment = Apartment.find(params[:id])
-    @building_id = params[:building_id]
-    @apartment.destroy
-    flash[:notice] = "Apartment Number '#{@apartment.apartment_number}' deleted."
-    redirect_to building_path(@building_id)
-  end
+    else
+      @apartment = Apartment.find(params[:id])
+      @building_id = params[:building_id]
+      @apartment.destroy
+      flash[:notice] = "Apartment Number '#{@apartment.apartment_number}' deleted."
+      redirect_to building_path(@building_id)
+    end
   end
 
   def has_user_and_building
@@ -86,6 +86,6 @@ class ApartmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def apartment_params
-    params.require(:apartment).permit(:building_id, :user_id, :apartment_number, :bedrooms, :bathrooms, :rent)
+    params.require(:apartment).permit(:building_id, :user_id, :apartment_number, :bedrooms, :bathrooms, :rent, :monthly_util, :central_air, :balcony)
   end
 end
