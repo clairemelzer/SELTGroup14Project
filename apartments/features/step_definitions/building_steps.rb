@@ -14,6 +14,12 @@ Given /^I am on the ApartmentFinder homepage$/ do
   fill_in 'Management Company', :with => management
   click_button 'Add Building'
  end
+ 
+  When /^I have updated the building with address "(.*?)" and management "(.*?)"$/ do |address, management|
+  fill_in 'Address', :with => address
+  fill_in 'Management Company', :with => management
+  click_button 'Update Building'
+ end
 
  Then /^I should see a building list entry with address "(.*?)" and management "(.*?)"$/ do |address, management| 
    result=false
@@ -25,7 +31,17 @@ Given /^I am on the ApartmentFinder homepage$/ do
    end  
   expect(result).to be_truthy
  end
- 
+
+ Then /^I should not see a building list entry with address "(.*?)" and management "(.*?)"$/ do |address, management| 
+   result=false
+   all("tr").each do |tr|
+     if tr.has_content?(address) && tr.has_content?(management)
+       result = false
+       break
+     end
+   end  
+  expect(result).to be_falsey
+ end 
 
  When /^I have visited the "(.*?)" page$/ do |address|
    visit homepage_path
@@ -35,6 +51,14 @@ Given /^I am on the ApartmentFinder homepage$/ do
   When /^I have clicked on add new building$/ do
    visit buildings_path
    click_on "Add new Building"
+ end
+ 
+   When /^I have clicked on delete$/ do
+   click_on "Delete"
+ end
+ 
+    When /^I have clicked on edit building$/ do
+   click_on "Edit This Building"
  end
  
   When /^I have visited the homepage$/ do 
