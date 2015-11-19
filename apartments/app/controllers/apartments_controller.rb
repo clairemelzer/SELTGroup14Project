@@ -44,7 +44,7 @@ class ApartmentsController < ApplicationController
       flash[:notice] = "Apartment #{@apartment.apartment_number} was sucessfully created."
       redirect_to building_path(@building_id)
     else
-      redirect :back
+      redirect_to :back
     end
   end
 

@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
             flash[:notice] = "Your review has been added!"
             redirect_to building_apartment_path(params[:building_id], params[:apartment_id])
         else
-            redirect :back
+            redirect_to :back
         end
     end
     

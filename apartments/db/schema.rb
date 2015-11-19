@@ -22,8 +22,6 @@ ActiveRecord::Schema.define(version: 20151118222056) do
     t.integer  "rent"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "laundry"
-    t.string   "review"
     t.integer  "monthly_util"
     t.boolean  "central_air"
     t.boolean  "balcony"
