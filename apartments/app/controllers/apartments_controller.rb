@@ -17,6 +17,10 @@ class ApartmentsController < ApplicationController
 
 
   def new
+    if !@current_user
+      redirect_to building_apartment_path(@building_id, @apartment)
+      flash[:warning]= 'Can only add apartment if you are signed in!'
+    end
     @apartment = Apartment.new
   end
 
