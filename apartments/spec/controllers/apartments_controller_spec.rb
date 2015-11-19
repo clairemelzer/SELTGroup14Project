@@ -52,14 +52,41 @@ RSpec.describe ApartmentsController, type: :controller do
         end
     end
     
+    describe "updating an existing apartment" do
+        before(:each) do
+            building = create(:building)
+            @tempBuilding =  Building.create!(:address => building.address, :management => building.management)
+            apartment = create(:apartment)
+            @temp =  Apartment.create!(:apartment_number => "212")
+        end
+        
+        it 'should render the building apartments page if a user is not signed in' do
+            get :edit, {:id =>@temp.id, :building_id => @tempBuilding.id}
+            expect(response).to redirect_to('/buildings/'+@tempBuilding.id.to_s+"/apartments/"+@temp.id.to_s)
+        end
+        
+        it "should render the edit template" do
+            expect(User).to receive(:find_by_session_token).and_return(true)
+            request.cookies['session_token'] = "asdf"
+            get :edit, {:id =>@temp.id, :building_id => @tempBuilding.id}
+            expect(response).to render_template('edit')
+        end
+        
+        it "should update that apartment's attributes " do
+            apartment = {apartment_number:@temp.apartment_number}
+            put :update, :id => @temp.id, :apartment => apartment, :building_id => @tempBuilding.id
+            expect(response).to redirect_to('/buildings/'+@tempBuilding.id.to_s+"/apartments/"+@temp.id.to_s)
+        end
+    end
+    
     describe "deleting an apartment" do
         it "should remove the apartment from the database and redirect to the builing page" do
-            temp = Apartment.new
-            
-            expect(Apartment).to receive(:find).and_return(temp)
-            
-            get :destroy, id:1
-            expect(response).to redirect_to '/buildings/1'
+            building = create(:building)
+            @tempBuilding =  Building.create!(:address => building.address, :management => building.management)
+            apartment = create(:apartment)
+            @temp =  Apartment.create!(:apartment_number => "212")
+            get :destroy, {:id =>@temp.id, :building_id => @tempBuilding.id}
+            expect(response).to redirect_to('/buildings/'+@tempBuilding.id.to_s+"/apartments/"+@temp.id.to_s)
         end
     end
 end
