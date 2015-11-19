@@ -11,6 +11,10 @@ class ReviewsController < ApplicationController
     
     def new
         #user_id = @current_user.id
+        if !@current_user
+      redirect_to building_apartment_path(@building_id, @apartment)
+      flash[:warning]= 'Can only add review if you are signed in!'
+    end
         @review = Review.new
     end
     

@@ -64,7 +64,7 @@ class ApartmentsController < ApplicationController
   def destroy
    @apartment = Apartment.find params[:id]
     if !@current_user
-      redirect :back
+      redirect_to building_apartment_path(@building_id, @apartment)
       flash[:warning]= 'Can only delete apartment if you are signed in!'
     else
       @apartment = Apartment.find(params[:id])
@@ -76,9 +76,9 @@ class ApartmentsController < ApplicationController
   end
 
   def has_user_and_building
-    unless @current_user
-      flash[:notice] = 'You must be logged in to create a review.'
-      redirect_to login_path
+   unless @current_user
+     redirect_to login_path
+     flash[:notice] = "You need to sign in first!"
     end
     unless (@building = Building.find_by_id(params[:building_id]))
       redirect_to buildings_path

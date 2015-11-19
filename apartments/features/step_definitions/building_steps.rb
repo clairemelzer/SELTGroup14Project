@@ -57,6 +57,10 @@ Given /^I am on the ApartmentFinder homepage$/ do
    click_on "Delete"
  end
  
+    When /^I have clicked on logout$/ do
+   click_on "Logout"
+ end
+ 
     When /^I have clicked on edit building$/ do
    click_on "Edit This Building"
  end
