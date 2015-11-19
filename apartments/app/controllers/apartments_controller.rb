@@ -12,6 +12,7 @@ class ApartmentsController < ApplicationController
     id = params[:id]
     @apartment = Apartment.find(id)
     @building_id = params[:building_id]
+    @building = Building.find(@building_id)
     @reviews = Review.where(apartment_id:id)
   end
 
