@@ -38,4 +38,4 @@ Scenario: Add Review while not logged in
   And I have visited the Details about "19 E Burlington St" page 
   And I have visited the more about apartment number "101" page 
   And I have clicked on add review
-  Then I should see "You need to sign in first!"
+  Then I should see "Can only add review if you are signed in!"

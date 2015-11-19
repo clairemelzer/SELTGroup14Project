@@ -26,7 +26,7 @@ class ApartmentsController < ApplicationController
 
   # GET /apartments/1/edit
   def edit
-         
+    @building_id = params[:building_id]
     @apartment = Apartment.find params[:id]
     if !@current_user
       redirect_to building_apartment_path(@building_id, @apartment)
@@ -63,6 +63,7 @@ class ApartmentsController < ApplicationController
   # DELETE /apartments/1.json
   def destroy
    @apartment = Apartment.find params[:id]
+    @building_id = params[:building_id]
     if !@current_user
       redirect_to building_apartment_path(@building_id, @apartment)
       flash[:warning]= 'Can only delete apartment if you are signed in!'

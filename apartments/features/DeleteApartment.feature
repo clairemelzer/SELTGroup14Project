@@ -24,4 +24,4 @@ Scenario: Unauthorized User wants to delete apartment
   And I have visited the Details about "19 E Burlington St" page 
   And I have visited the more about apartment number "101" page 
   And I have clicked on delete
-  Then I should see "You need to sign in first!"
+  Then I should see "Can only delete apartment if you are signed in!"
