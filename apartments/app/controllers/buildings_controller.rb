@@ -56,11 +56,11 @@ class BuildingsController < ApplicationController
     if !@current_user
       redirect_to buildings_path(@building) 
       flash[:warning]= 'Can only delete building if you are signed in!'
-  else
-    @building = Building.find(params[:id])
-    @building.destroy
-    flash[:notice] = "Building '#{@building.address}' deleted."
-    redirect_to buildings_path
+    else
+      @building = Building.find(params[:id])
+      @building.destroy
+      flash[:notice] = "Building '#{@building.address}' deleted."
+      redirect_to buildings_path
   end
   
   end

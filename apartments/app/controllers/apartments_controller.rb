@@ -19,7 +19,7 @@ class ApartmentsController < ApplicationController
 
   def new
     if !@current_user
-      redirect_to building_apartment_path(@building_id, @apartment)
+      redirect_to new_session_path
       flash[:warning]= 'Can only add apartment if you are signed in!'
     end
     @apartment = Apartment.new
@@ -63,7 +63,7 @@ class ApartmentsController < ApplicationController
   # DELETE /apartments/1
   # DELETE /apartments/1.json
   def destroy
-   @apartment = Apartment.find params[:id]
+    @apartment = Apartment.find params[:id]
     @building_id = params[:building_id]
     if !@current_user
       redirect_to building_apartment_path(@building_id, @apartment)
@@ -78,8 +78,8 @@ class ApartmentsController < ApplicationController
   end
 
   def has_user_and_building
-   unless @current_user
-     redirect_to login_path
+    unless @current_user
+     redirect_to new_session_path
      flash[:notice] = "You need to sign in first!"
     end
     unless (@building = Building.find_by_id(params[:building_id]))
