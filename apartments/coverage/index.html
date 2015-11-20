@@ -14,26 +14,26 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-11-20T18:41:29+00:00">2015-11-20T18:41:29+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-11-20T18:46:35+00:00">2015-11-20T18:46:35+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">94.64%</span></span>
+    (<span class="covered_percent"><span class="green">94.68%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.37
+         1.38
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>24</b> files in total.
-    <b>392</b> relevant lines. 
-    <span class="green"><b>371</b> lines covered</span> and
+    <b>395</b> relevant lines. 
+    <span class="green"><b>374</b> lines covered</span> and
     <span class="red"><b>21</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -187,7 +187,7 @@
         <td>15</td>
         <td>15</td>
         <td>0</td>
-        <td>4.7</td>
+        <td>4.9</td>
       </tr>
       
       <tr>
@@ -203,9 +203,9 @@
       <tr>
         <td class="strong"><a href="#e5ad2f68fa2b5784b1f6d6e74b55387a49747f8c" class="src_link" title="spec/controllers/buildings_controller_spec.rb">spec/controllers/buildings_controller_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>88</td>
-        <td>52</td>
-        <td>52</td>
+        <td>92</td>
+        <td>55</td>
+        <td>55</td>
         <td>0</td>
         <td>1.1</td>
       </tr>
@@ -1166,14 +1166,14 @@
           <code class="ruby">    if !@current_user</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="23">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="23">
+          <span class="hits">1</span>
           
           <code class="ruby">      redirect_to buildings_path </code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="24">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="24">
+          <span class="hits">1</span>
           
           <code class="ruby">      flash[:warning]= &#39;Can only add building if you are signed in!&#39;</code>
         </li>
@@ -2528,8 +2528,8 @@
           <code class="ruby">  has_secure_password</code>
         </li>
       
-        <li class="covered" data-hits="29" data-linenumber="10">
-          <span class="hits">29</span>
+        <li class="covered" data-hits="31" data-linenumber="10">
+          <span class="hits">31</span>
           
           <code class="ruby">  before_save {|user| user.email=user.email.downcase}</code>
         </li>
@@ -2594,8 +2594,8 @@
           <code class="ruby">  def create_session_token</code>
         </li>
       
-        <li class="covered" data-hits="28" data-linenumber="21">
-          <span class="hits">28</span>
+        <li class="covered" data-hits="30" data-linenumber="21">
+          <span class="hits">30</span>
           
           <code class="ruby">    self.session_token = SecureRandom.urlsafe_base64</code>
         </li>
@@ -2669,8 +2669,8 @@
     <h3>spec/controllers/buildings_controller_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>52</b> relevant lines. 
-      <span class="green"><b>52</b> lines covered</span> and
+      <b>55</b> relevant lines. 
+      <span class="green"><b>55</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -3071,136 +3071,160 @@
         <li class="covered" data-hits="1" data-linenumber="66">
           <span class="hits">1</span>
           
-          <code class="ruby">            pending</code>
+          <code class="ruby">            user = create(:user)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="67">
           <span class="hits">1</span>
           
-          <code class="ruby">            get :new</code>
+          <code class="ruby">            @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="68">
           <span class="hits">1</span>
           
-          <code class="ruby">            expect(response).to render_template(&#39;new&#39;)</code>
+          <code class="ruby">            expect(User).to receive(:find_by_session_token).and_return(@current_user)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="69">
+        <li class="covered" data-hits="1" data-linenumber="69">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">        end</code>
+          <code class="ruby">            request.cookies[&#39;session_token&#39;] = &quot;asdf&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="70">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">            </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="71">
+        <li class="covered" data-hits="1" data-linenumber="71">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    </code>
+          <code class="ruby">            get :new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="72">
           <span class="hits">1</span>
           
-          <code class="ruby">    describe &quot;viewing all buildings&quot; do</code>
+          <code class="ruby">            expect(response).to render_template(&#39;new&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="73">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        it &quot;renders index template&quot; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="74">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            get :index</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="75">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            expect(response).to render_template(&#39;index&#39;)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="76">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            expect(assigns(:buildings)).to be_truthy</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="77">
+        <li class="never" data-hits="" data-linenumber="73">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="78">
+        <li class="never" data-hits="" data-linenumber="74">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="79">
+        <li class="never" data-hits="" data-linenumber="75">
           
           
           <code class="ruby">    </code>
         </li>
       
+        <li class="covered" data-hits="1" data-linenumber="76">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    describe &quot;viewing all buildings&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="77">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        it &quot;renders index template&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="78">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            get :index</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="79">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            expect(response).to render_template(&#39;index&#39;)</code>
+        </li>
+      
         <li class="covered" data-hits="1" data-linenumber="80">
           <span class="hits">1</span>
           
-          <code class="ruby">    describe &quot;delete existing building&quot; do</code>
+          <code class="ruby">            expect(assigns(:buildings)).to be_truthy</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="81">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        it &quot;should redirect user to all buildings page after deletion&quot; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="82">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            fake_results = Building.new</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="83">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            expect(Building).to receive(:find).and_return(fake_results)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="84">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            get :destroy, {:id=&gt; &quot;1&quot;}, {}</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="85">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            expect(response).to redirect_to(buildings_path)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="86">
+        <li class="never" data-hits="" data-linenumber="81">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="87">
+        <li class="never" data-hits="" data-linenumber="82">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="88">
+        <li class="never" data-hits="" data-linenumber="83">
+          
+          
+          <code class="ruby">    </code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="84">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    describe &quot;delete existing building&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="85">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        it &quot;should redirect user to all buildings page after deletion&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="86">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            fake_results = Building.new</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="87">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            expect(Building).to receive(:find).and_return(fake_results)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="88">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            get :destroy, {:id=&gt; &quot;1&quot;}, {}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="89">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            expect(response).to redirect_to(buildings_path)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="90">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="91">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="92">
           
           
           <code class="ruby">end</code>
