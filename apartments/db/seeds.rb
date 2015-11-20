@@ -22,3 +22,7 @@ apartments.each do |apartment|
   temp.building_id = 1
   temp.save!
 end
+
+
+
+
