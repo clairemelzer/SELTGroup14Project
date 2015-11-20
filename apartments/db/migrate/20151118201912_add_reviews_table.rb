@@ -5,6 +5,7 @@ class AddReviewsTable < ActiveRecord::Migration
       t.integer :rating
       t.string :user_name
       t.integer :apartment_id
+      t.integer :user_id
     end
   end
 end
