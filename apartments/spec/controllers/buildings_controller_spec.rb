@@ -63,7 +63,11 @@ RSpec.describe BuildingsController, type: :controller do
         
         #need to add user login otherwise it redirects to buildings path
         it "renders new template" do
-            pending
+            user = create(:user)
+            @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)
+            expect(User).to receive(:find_by_session_token).and_return(@current_user)
+            request.cookies['session_token'] = "asdf"
+            
             get :new
             expect(response).to render_template('new')
         end
