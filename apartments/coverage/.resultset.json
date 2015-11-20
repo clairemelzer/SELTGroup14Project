@@ -365,6 +365,7 @@
         1,
         1,
         1,
+        1,
         null,
         null,
         1,
@@ -517,13 +518,6 @@
         null,
         null,
         1,
-        1,
-        null,
-        null
-      ],
-      "/home/ubuntu/workspace/SELTGroup14Project/apartments/spec/controllers/application_controller_spec.rb": [
-        1,
-        null,
         1,
         null,
         null
@@ -688,22 +682,6 @@
         0,
         null,
         null,
-        null,
-        null,
-        null
-      ],
-      "/home/ubuntu/workspace/SELTGroup14Project/apartments/spec/controllers/homepages_controller_spec.rb": [
-        1,
-        null,
-        1,
-        null,
-        null
-      ],
-      "/home/ubuntu/workspace/SELTGroup14Project/apartments/app/controllers/homepages_controller.rb": [
-        1,
-        1,
-        null,
-        1,
         null,
         null,
         null
@@ -1155,10 +1133,6 @@
         null
       ]
     },
-<<<<<<< HEAD
-    "timestamp": 1448050316
-=======
-    "timestamp": 1448045195
->>>>>>> e583db0d4f61b0a9c452342e24b6411e11bb8795
+    "timestamp": 1448060293
   }
 }
