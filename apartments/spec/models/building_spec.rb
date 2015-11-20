@@ -11,4 +11,11 @@ RSpec.describe Building, type: :model do
  it "Is invalid without address" do
      expect(build(:building, address: nil)).to_not be_valid
  end
+ #It has many apartments
+it { is_expected.to have_many :apartments }
+
+ #It has many users through apartments
+it { is_expected.to have_many :users }
+
+
 end

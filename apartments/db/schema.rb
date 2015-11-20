@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20151118222056) do
     t.integer "rating"
     t.string  "user_name"
     t.integer "apartment_id"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

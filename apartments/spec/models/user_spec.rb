@@ -27,6 +27,14 @@ RSpec.describe User, type: :model do
  it "is invalid with too long of name" do
   expect(build(:user, name: SecureRandom.base64(50) )).to_not be_valid
 end
+#It has many apartments
+it { is_expected.to have_many :apartments }
+
+#It has many buildings through apartments
+it { is_expected.to have_many :buildings }
+
+#It has many reviews through apartments
+it { is_expected.to have_many :reviews }
 
  
 end
