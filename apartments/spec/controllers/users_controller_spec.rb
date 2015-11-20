@@ -32,7 +32,7 @@ RSpec.describe UsersController, type: :controller do
         before(:each) do
             user = create(:user)
             @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)
-            expect(User).to receive(:find_by_session_token).and_return(true)
+            expect(User).to receive(:find_by_session_token).and_return(@current_user)
             request.cookies['session_token'] = "asdf"
         end
         
