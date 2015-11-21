@@ -4,6 +4,7 @@ FactoryGirl.define do
     password  "test12345"
     name "Bob"
     password_confirmation "test12345"
+    session_token "12345"
   end
   
   factory :non_logged_user, parent: :user do
