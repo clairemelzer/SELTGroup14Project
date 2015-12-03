@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20151118222056) do
 
   create_table "apartments", force: :cascade do |t|
     t.integer  "building_id"
-    t.integer  "user_id"
     t.integer  "apartment_number"
     t.integer  "bedrooms"
     t.integer  "bathrooms"

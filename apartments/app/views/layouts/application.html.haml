@@ -23,7 +23,7 @@
       
       %br
 
-      - if !current_page?('/buildings')
+      - if !current_page?('/buildings') and !current_page?('/homepage') 
         = link_to 'View All Buildings', buildings_path
       %br
       - if !current_page?('/homepage')

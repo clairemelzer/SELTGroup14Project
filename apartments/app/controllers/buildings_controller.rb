@@ -64,5 +64,6 @@ class BuildingsController < ApplicationController
   end
   
   end
+  
 
 end
