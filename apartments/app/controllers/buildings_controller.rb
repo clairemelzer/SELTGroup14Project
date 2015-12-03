@@ -2,7 +2,7 @@ class BuildingsController < ApplicationController
   before_filter :set_current_user#, :only=> ['edit', 'update', 'delete']
 
   def building_params #pets-string, laundry-int, parking-string, num_apt-int
-    params.require(:building).permit(:address, :management, :pets, :laundry, :parking, :number_apartments, :search)
+    params.require(:building).permit(:address, :management, :pets, :laundry, :parking, :number_apartments, :searchaddress, :searchcompany)
   end
 
   def show
@@ -15,11 +15,9 @@ class BuildingsController < ApplicationController
   def index
     @buildings = Building.all
     
-    if params[:search]
-      @buildings = Building.search(params[:search])
-    else
-      @buidlings = Building.all
-    end
+    @buildings = Building.search(params[:searchaddress], params[:searchcompany])
+
+
   end
 
   def new

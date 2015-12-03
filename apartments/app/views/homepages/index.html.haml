@@ -9,7 +9,9 @@
 %h2 Search for an apartment by the following criteria:
 = form_tag buildings_path, method: :get, id: "search-form" do
   
-  = text_field_tag :search, params[:search], placeholder: "Address"
+  = text_field_tag :searchaddress, params[:searchaddress], placeholder: "Address"
+  
+  = text_field_tag :searchcompany, params[:searchcompany], placeholder: "Management Company"
 
   = submit_tag 'Search'
 
