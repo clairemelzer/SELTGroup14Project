@@ -4,4 +4,8 @@ class Building < ActiveRecord::Base
 
     has_many :apartments
     has_many :users, :through => :apartments
+    
+  def self.search(search)
+    where("address LIKE ?", "%#{search}%")
+  end
 end
