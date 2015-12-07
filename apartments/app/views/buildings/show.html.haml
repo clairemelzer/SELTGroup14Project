@@ -26,25 +26,13 @@
 
 %h3 Apartments in this building:
 
-= form_tag buildings_path do
-  
-  Bedrooms
-  
-  Bathrooms
-  
-  Rent
-  
-  Balcony
-  
-  Central Air
-  
-  Laundry in Unit
-  
-  = label :building, :address, 'Address'
-  = text_field :building, 'address', :class => 'input'
+= form_tag building_path, :method => :get do
+  Balcony:
+  = check_box_tag :filterbalcony, params[:filterbalcony]
   %br
- 
-  = submit_tag 'Apply Filters'
+  = submit_tag 'Refresh'
+
+
 
 
 %table#apartments

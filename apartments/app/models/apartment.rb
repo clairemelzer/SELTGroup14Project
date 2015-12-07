@@ -6,4 +6,8 @@ class Apartment < ActiveRecord::Base
     def each(&block)
         @apartments.each(&block)
     end
+    
+  def self.filter(filterbalcony)
+    where("balcony LIKE ?", "t") 
+  end
 end

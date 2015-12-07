@@ -9,4 +9,5 @@ class Building < ActiveRecord::Base
     where("address LIKE ?", "%#{searchaddress}%") 
     where("management LIKE ?", "%#{searchcompany}%")
   end
+  
 end
