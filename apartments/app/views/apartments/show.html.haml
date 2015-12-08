@@ -2,30 +2,32 @@
 
 
 %ul#details
-  %li
-    Management Company: #{@building.management}
-  %li
-    Address: #{@building.address}
-  %li
-    Number of Bedrooms: #{@apartment.bedrooms}
-  %li
-    Number of Bathrooms: #{@apartment.bathrooms}
-  %li
-    Rent Cost: #{@apartment.rent}
-  %li
-    Average Monthly Utilities: #{@apartment.monthly_util}
-  %li 
-    Balcony: 
-    -if (@apartment.balcony) then @result="yes" else @result="no" end
-    #{@result}
-  %li
-    Central Air:
-    -if (@apartment.central_air) then @result="yes" else @result="no" end
-    #{@result}
-  %li
-    Laundry in Unit?
-    -if (@apartment.laundry_in_unit) then @result="yes" else @result="no" end
-    #{@result}
+  
+  Management Company: #{@building.management}
+  %br
+  Address: #{@building.address}
+  %br
+  Number of Bedrooms: #{@apartment.bedrooms}
+  %br
+  Number of Bathrooms: #{@apartment.bathrooms}
+  %br
+  Rent Cost: #{@apartment.rent}
+  %br
+  Average Monthly Utilities: #{@apartment.monthly_util}
+  %br
+  Balcony: 
+  -if (@apartment.balcony) then @result="yes" else @result="no" end 
+  #{@result}
+   
+  %br
+  Central Air:
+  -if (@apartment.central_air) then @result="yes" else @result="no" end 
+  #{@result}
+  %br
+  Laundry in Unit?
+  -if (@apartment.laundry_in_unit) then @result="yes" else @result="no" end 
+  #{@result}
+
    
 
 

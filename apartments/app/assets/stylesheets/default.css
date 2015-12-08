@@ -90,6 +90,10 @@ table#reviews th, table#reviews td {
   text-align: left;
 }
 
+ul#details{
+  text-align: center
+}
+
 #notice #warning {
   background: red;
   margin: 1em 0;
@@ -113,7 +117,7 @@ form label {
 }
 
 .buttongreen {
-  width: 200px;
+  width: 150px;
   height: 40px;
   display: block;
   margin: 0 auto;
@@ -128,7 +132,7 @@ form label {
 }
 
 .buttonblue {
-  width: 200px;
+  width: 150px;
   height: 40px;
   display: block;
   margin: 0 auto;
@@ -143,7 +147,7 @@ form label {
 }
 
 .buttonred {
-  width: 200px;
+  width: 150px;
   height: 40px;
   display: block;
   margin: 0 auto;

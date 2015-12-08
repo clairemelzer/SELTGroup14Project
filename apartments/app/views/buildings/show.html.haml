@@ -4,22 +4,24 @@
 
 
 %ul#details
-  %li
-    Managment Company:
-    = @building.management
-  %li
-    Number of Apartments:
-    = @building.number_apartments
-  %li 
-    Number of building washer/dryer machines:
-    = @building.laundry
-  %li 
-    Parking available:
-    = @building.parking
-  %li
-    Pets allowed:
-    = @building.pets
-
+  
+  Managment Company:
+  = @building.management
+  %br
+  Number of Apartments:
+  = @building.number_apartments
+  %br
+  Number of building washer/dryer machines:
+  = @building.laundry
+  %br
+  Parking available:
+  -if (@building.parking) then @result="yes" else @result="no" end
+  #{@result}
+  %br
+  Pets allowed:
+  -if (@building.pets) then @result="yes" else @result="no" end
+  #{@result}
+%br
 
 %h3 Pictures:
 %br
@@ -39,10 +41,10 @@
   = check_box_tag :filterlaundry, params[:filterlaundry]
   
   Bedrooms:
-  = collection_select :filterbedrooms, :bedrooms, @apartments, :bedrooms, :bedrooms, :prompt => "Bedrooms"
+  = select :filterbedrooms, :bedrooms, @apartments.pluck(:bedrooms).uniq, :prompt => "Bedrooms"
   
   Bathrooms:
-  = collection_select :filterbathrooms, :bathrooms, @apartments, :bathrooms, :bathrooms, :prompt => "Bathrooms"
+  = select :filterbathrooms, :bathrooms, @apartments.pluck(:bathrooms).uniq, :prompt => "Bathrooms"
   
   
   

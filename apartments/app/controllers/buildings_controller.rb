@@ -52,11 +52,15 @@ class BuildingsController < ApplicationController
     if params[:searchcompany] != nil
       @buildings = @buildings.searchcompany(params[:searchcompany][:management])
     end
-    if params[:searchparking] != nil
-      @buildings = @buildings.searchparking(params[:searchparking][:parking])
+    
+    if params[:searchparking] == 'on'
+      params[:searchparking] = 't'
+      @buildings = @buildings.searchparking(params[:searchparking])
     end
+    
     if params[:searchpets] != nil 
-      @buildings = @buildings.searchpets(params[:searchpets][:pets])
+      params[:searchpets] = 't'
+      @buildings = @buildings.searchpets(params[:searchpets])
     end
 
   end

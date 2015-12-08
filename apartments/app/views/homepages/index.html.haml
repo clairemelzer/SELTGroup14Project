@@ -11,13 +11,14 @@
   
   = text_field_tag :searchaddress, params[:searchaddress], placeholder: "Address"
   
-  = collection_select :searchcompany, :management, @buildings, :management, :management, :prompt => "Select a company"
+  = select :searchcompany, :management, @buildings.pluck(:management).uniq, :prompt => "Select a company"
   
-  = collection_select :searchparking, :parking, @buildings, :parking, :parking, :prompt => "Type of Parking"
+  Off street parking available?
+  = check_box_tag :searchparking, params[:searchparking]
   
-  = collection_select :searchpets, :pets, @buildings, :pets, :pets, :prompt => "Pets Allowed?"
+  Pets allowed?
+  = check_box_tag :searchpets, params[:searchpets]
   
-
 
   = submit_tag 'Search'
 

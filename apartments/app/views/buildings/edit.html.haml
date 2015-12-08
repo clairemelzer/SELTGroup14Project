@@ -20,12 +20,13 @@
   = text_field :building, 'number_apartments'
   %br
   %br
-  = label :building, :parking, 'Type of parking available (On-street, garage, stall)'
-  = text_field :building, 'parking'
+  = label :building, :parking, 'Parking Available?'
+  = check_box :building, 'parking'
   %br
   %br
-  = label :building, :pets, 'Pets allowed (cat, dog, none, all, etc.)'
-  = text_field :building, 'pets'
+  %br
+  = label :building, :pets, 'Pets allowed?'
+  = check_box :building, 'pets'
   %br
   %br
 
