@@ -2,7 +2,7 @@ class BuildingsController < ApplicationController
   before_filter :set_current_user#, :only=> ['edit', 'update', 'delete']
 
   def building_params #pets-string, laundry-int, parking-string, num_apt-int
-    params.require(:building).permit(:address, :management, :pets, :laundry, :parking, :number_apartments)
+    params.require(:building).permit(:address, :city, :management, :pets, :laundry, :parking, :number_apartments)
   end
 
   def show
@@ -51,6 +51,10 @@ class BuildingsController < ApplicationController
     @buildings = @buildings.searchaddress(params[:searchaddress])
     if params[:searchcompany] != nil
       @buildings = @buildings.searchcompany(params[:searchcompany][:management])
+    end
+    
+    if params[:searchcompany] != nil
+      @buildings = @buildings.searchcity(params[:searchcity][:city])
     end
     
     if params[:searchparking] == 'on'

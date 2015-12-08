@@ -1,6 +1,6 @@
 -# in app/views/movies/show.html.haml
 
-%h2 Details about #{@building.address}
+%h2 Details about #{@building.address}, #{@building.city} 
 
 
 %ul#details
@@ -31,14 +31,14 @@
 
 = form_tag building_path, :method => :get do
   Balcony:
-  = check_box_tag :filterbalcony, params[:filterbalcony]
+  = check_box_tag :filterbalcony, params[:filterbalcony], if params[:filterbalcony]; params[:filterbalcony].include?(params[:filterbalcony]) end
 
   
   Central Air?
-  = check_box_tag :filterair, params[:filterair]
+  = check_box_tag :filterair, params[:filterair], if params[:filterair]; params[:filterair].include?(params[:filterair]) end
   
   Laundry in Unit?
-  = check_box_tag :filterlaundry, params[:filterlaundry]
+  = check_box_tag :filterlaundry, params[:filterlaundry], if params[:filterlaundry]; params[:filterlaundry].include?(params[:filterlaundry]) end
   
   Bedrooms:
   = select :filterbedrooms, :bedrooms, @apartments.pluck(:bedrooms).uniq, :prompt => "Bedrooms"
@@ -51,8 +51,8 @@
   %br
   = submit_tag 'Apply Filters'
 
-
-
+%br
+%h2*Sorted by rent: Lowest to Highest*
 
 %table#apartments
   %thead

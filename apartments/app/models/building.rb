@@ -13,6 +13,10 @@ class Building < ActiveRecord::Base
     where("management LIKE ?", "%#{search}%")
   end
   
+  def self.searchcity(search)
+    where("city LIKE ?", "%#{search}%")
+  end
+  
   def self.searchparking(search)
     where("parking LIKE ?", "%#{search}%")
   end

@@ -11,6 +11,8 @@
   
   = text_field_tag :searchaddress, params[:searchaddress], placeholder: "Address"
   
+  = select :searchcity, :city, @buildings.pluck(:city).uniq, :prompt => "Select a City"
+  
   = select :searchcompany, :management, @buildings.pluck(:management).uniq, :prompt => "Select a company"
   
   Off street parking available?

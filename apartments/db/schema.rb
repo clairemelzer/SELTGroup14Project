@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208195432) do
+ActiveRecord::Schema.define(version: 20151208213213) do
 
   create_table "apartments", force: :cascade do |t|
     t.integer  "building_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20151208195432) do
     t.integer  "number_apartments"
     t.boolean  "parking"
     t.boolean  "pets"
+    t.string   "city"
   end
 
   create_table "reviews", force: :cascade do |t|
