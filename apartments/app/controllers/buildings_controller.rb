@@ -6,33 +6,35 @@ class BuildingsController < ApplicationController
   end
 
   def show
+    
+
     id = params[:id] # 
     @building = Building.find(id) # 
-    @apartments = Apartment.where(building_id:id)
+    @apartments = Apartment.where(building_id:id).order('rent')
     
     if params[:filterbalcony] == nil
 
     else
       params[:filterbalcony] = "t"
-      @apartments = @apartments.filterbalcony(params[:filterbalcony])
+      @apartments = @apartments.filterbalcony(params[:filterbalcony]).order('rent')
    end
     if params[:filterlaundry] == nil 
 
     else 
       params[:filterlaundry] = "t"
-      @apartments = @apartments.filterlaundry(params[:filterlaundry])
+      @apartments = @apartments.filterlaundry(params[:filterlaundry]).order('rent')
     end
     if params[:filterair] == nil 
 
     else 
       params[:filterair] = "t"
-      @apartments = @apartments.filterair(params[:filterair])
+      @apartments = @apartments.filterair(params[:filterair]).order('rent')
     end
     if params[:filterbathrooms] != nil
-      @apartments = @apartments.filterbathrooms(params[:filterbathrooms][:bathrooms])
+      @apartments = @apartments.filterbathrooms(params[:filterbathrooms][:bathrooms]).order('rent')
     end
     if params[:filterbedrooms] != nil 
-      @apartments = @apartments.filterbedrooms(params[:filterbedrooms][:bedrooms])
+      @apartments = @apartments.filterbedrooms(params[:filterbedrooms][:bedrooms]).order('rent')
     end
     
 
