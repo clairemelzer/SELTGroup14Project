@@ -2,7 +2,7 @@ class BuildingsController < ApplicationController
   before_filter :set_current_user#, :only=> ['edit', 'update', 'delete']
 
   def building_params #pets-string, laundry-int, parking-string, num_apt-int
-    params.require(:building).permit(:address, :management, :pets, :laundry, :parking, :number_apartments, :searchaddress, :searchcompany, :filterbalcony)
+    params.require(:building).permit(:address, :management, :pets, :laundry, :parking, :number_apartments)
   end
 
   def show
@@ -10,21 +10,52 @@ class BuildingsController < ApplicationController
     @building = Building.find(id) # 
     @apartments = Apartment.where(building_id:id)
     
+    if params[:filterbalcony] == nil
 
-    @selected_balconies = params[:filterbalcony]
-    if @selected_balconies == nil
-      @apartments = Apartment.where(building_id:id)
     else
-      @apartments = Apartment.filter(params[:filterbalcony])
+      params[:filterbalcony] = "t"
+      @apartments = @apartments.filterbalcony(params[:filterbalcony])
+   end
+    if params[:filterlaundry] == nil 
+
+    else 
+      params[:filterlaundry] = "t"
+      @apartments = @apartments.filterlaundry(params[:filterlaundry])
     end
+    if params[:filterair] == nil 
+
+    else 
+      params[:filterair] = "t"
+      @apartments = @apartments.filterair(params[:filterair])
+    end
+    if params[:filterbathrooms] != nil
+      @apartments = @apartments.filterbathrooms(params[:filterbathrooms][:bathrooms])
+    end
+    if params[:filterbedrooms] != nil 
+      @apartments = @apartments.filterbedrooms(params[:filterbedrooms][:bedrooms])
+    end
+    
+
+
 
   end
 
   def index
-    @buildings = Building.all
-    
-    @buildings = Building.search(params[:searchaddress], params[:searchcompany])
 
+    
+    @buildings = Building.all
+  
+
+    @buildings = @buildings.searchaddress(params[:searchaddress])
+    if params[:searchcompany] != nil
+      @buildings = @buildings.searchcompany(params[:searchcompany][:management])
+    end
+    if params[:searchparking] != nil
+      @buildings = @buildings.searchparking(params[:searchparking][:parking])
+    end
+    if params[:searchpets] != nil 
+      @buildings = @buildings.searchpets(params[:searchpets][:pets])
+    end
 
   end
 

@@ -7,7 +7,23 @@ class Apartment < ActiveRecord::Base
         @apartments.each(&block)
     end
     
-  def self.filter(filterbalcony)
-    where("balcony LIKE ?", "t") 
-  end
+    def self.filterbalcony(filterbalcony)
+        where("balcony LIKE ?", "%#{filterbalcony}%")
+    end
+  
+    def self.filterlaundry(filter)
+       where("laundry_in_unit LIKE ?", "%#{filter}%")
+    end
+  
+    def self.filterair(filter)
+       where("central_air LIKE ?", "%#{filter}%")
+    end
+    
+    def self.filterbedrooms(filter)
+       where("bedrooms LIKE ?", "%#{filter}%")
+    end
+  
+    def self.filterbathrooms(filter)
+       where("bathrooms LIKE ?", "%#{filter}%")
+    end
 end

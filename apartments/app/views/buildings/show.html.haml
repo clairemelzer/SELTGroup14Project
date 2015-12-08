@@ -26,11 +26,28 @@
 
 %h3 Apartments in this building:
 
+
 = form_tag building_path, :method => :get do
   Balcony:
   = check_box_tag :filterbalcony, params[:filterbalcony]
+
+  
+  Central Air?
+  = check_box_tag :filterair, params[:filterair]
+  
+  Laundry in Unit?
+  = check_box_tag :filterlaundry, params[:filterlaundry]
+  
+  Bedrooms:
+  = collection_select :filterbedrooms, :bedrooms, @apartments, :bedrooms, :bedrooms, :prompt => "Bedrooms"
+  
+  Bathrooms:
+  = collection_select :filterbathrooms, :bathrooms, @apartments, :bathrooms, :bathrooms, :prompt => "Bathrooms"
+  
+
+  
   %br
-  = submit_tag 'Refresh'
+  = submit_tag 'Apply Filters'
 
 
 
