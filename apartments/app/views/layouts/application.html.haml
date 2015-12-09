@@ -7,7 +7,7 @@
     = csrf_meta_tags
 
   %body
-    %h1.title Iowa City Apartment Finder!
+    %h1.title Iowa City Apartment Finder
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
@@ -16,7 +16,6 @@
       - if @current_user
         = button_to "Logout", logout_path, :class => "buttonred", :method => :delete 
         - flash[:notice] = "You are logged in as #{@current_user.email} (User name: #{@current_user.name})"
-        = link_to 'View Profile', user_path(@current_user)
         
         %br
       = yield

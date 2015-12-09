@@ -22,7 +22,7 @@ class ApartmentsController < ApplicationController
       redirect_to new_session_path
       flash[:warning]= 'Can only add apartment if you are signed in!'
     end
-    @apartment = Apartment.new
+
   end
 
   # GET /apartments/1/edit
@@ -45,7 +45,7 @@ class ApartmentsController < ApplicationController
       flash[:notice] = "Apartment #{@apartment.apartment_number} was sucessfully created."
       redirect_to building_path(@building_id)
     else
-      redirect_to :back
+      render 'new'
     end
   end
 

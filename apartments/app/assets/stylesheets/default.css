@@ -3,7 +3,7 @@ html, body {
   padding: 0;
   background: #444444;
   color: DarkSlateGrey;
-  font-family: Tahoma, Verdana, sans-serif;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif; 
   font-size: 10pt;
 }
 div#main {
@@ -17,6 +17,7 @@ a {
   color: gold;
   text-decoration: underline;
   font-weight: bold;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif; 
 }
 h1 {
   color: black;
@@ -24,13 +25,15 @@ h1 {
   display: block;
   width: 100%;
   border-bottom: 1px solid DarkSlateGrey;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 h2 {
   color: black;
-  font-size: 100%;
+  font-size: 125%;
   display: block;
   width: 100%;
   text-align: center;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 h1.title {
   margin: 0 0 1em;
@@ -41,21 +44,25 @@ h1.title {
   border-bottom: 4px solid black;
   font-size: 2em;
   font-style: normal;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 table#buildings {
   margin: 10px;
   border-collapse: collapse;
   width: 100%;
   border-bottom: 2px solid black;
+
 }
 table#buildings th {
   border: 2px solid white;
   font-weight: bold;
   background-color: gold;
+
 }
 table#building th, table#buildings td {
   padding: 4px;
   text-align: left;
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 
 table#apartments {
@@ -72,6 +79,7 @@ table#apartments th {
 table#apartment th, table#apartments td {
   padding: 4px;
   text-align: left;
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 
 table#reviews {
@@ -88,6 +96,7 @@ table#reviews th {
 table#reviews th, table#reviews td {
   padding: 4px;
   text-align: left;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 
 ul#details{
@@ -98,6 +107,7 @@ ul#details{
   background: red;
   margin: 1em 0;
   padding: 4px;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 
 form{
@@ -109,6 +119,7 @@ form label {
   display: block;
   line-height: 25px;
   color: black;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 
 .input {
@@ -125,6 +136,7 @@ form label {
   background: #98FB98;
   border-radius: 5px;
   font-weight: bold;
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 
 .buttongreen:hover{
@@ -140,6 +152,7 @@ form label {
   background: #66CCFF;
   border-radius: 5px;
   font-weight: bold;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 
 .buttonblue:hover{
@@ -150,11 +163,12 @@ form label {
   width: 150px;
   height: 40px;
   display: block;
-  margin: 0 auto;
+  margin-left: 85%;
   text-align: center;
   background: #FF0000;
   border-radius: 5px;
   font-weight: bold;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 
 .buttonred:hover{

@@ -1,9 +1,13 @@
 class Building < ActiveRecord::Base
-    validates :management, presence: true
-    validates :address, presence: true
+
 
     has_many :apartments
     has_many :users, :through => :apartments
+    
+  VALID_ADDRESS = /\d+\s*\w*\s*\w*\s*\w*/
+  validates :address, presence: true, uniqueness: {case_sensitive: false}, format: {with: VALID_ADDRESS}, length: {maximum: 50}
+  validates :city, presence: true, length: {maximum: 50}
+  validates :management, presence: true, length: {maximum: 50}
     
   def self.searchaddress(search)
     where("address LIKE ?", "%#{search}%") 

@@ -1,5 +1,11 @@
 %h1 Add a New Apartment
 
+-unless @apartment ==nil
+  -if @apartment.errors.any?
+    %ul
+    -@apartment.errors.full_messages.each do |msg|
+      %li #{msg}
+
 = form_tag building_apartments_path do
 
   =label :apartment, :apartment_number, 'Apartment Number'

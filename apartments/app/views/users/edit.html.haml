@@ -1,0 +1,16 @@
+%h1 Edit User
+
+= form_tag user_path(@user), :method => :put do
+
+  = label :user, :name, 'Name'
+  = text_field :user, 'name', :class => 'input'
+  %br
+  = label :user, :email, 'Email'
+  = text_field :user, 'email', :class => 'input'
+  %br
+  = label :user, :password, 'Password'
+  = password_field :user, 'password', :class => 'input'
+  
+
+
+  = submit_tag 'Update User Info'

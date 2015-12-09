@@ -6,7 +6,6 @@ class BuildingsController < ApplicationController
   end
 
   def show
-    
 
     id = params[:id] # 
     @building = Building.find(id) # 
@@ -37,17 +36,11 @@ class BuildingsController < ApplicationController
       @apartments = @apartments.filterbedrooms(params[:filterbedrooms][:bedrooms]).order('rent')
     end
     
-
-
-
   end
 
   def index
-
-    
     @buildings = Building.all
   
-
     @buildings = @buildings.searchaddress(params[:searchaddress])
     if params[:searchcompany] != nil
       @buildings = @buildings.searchcompany(params[:searchcompany][:management])

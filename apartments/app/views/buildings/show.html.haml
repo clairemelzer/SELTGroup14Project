@@ -41,10 +41,10 @@
   = check_box_tag :filterlaundry, params[:filterlaundry], if params[:filterlaundry]; params[:filterlaundry].include?(params[:filterlaundry]) end
   
   Bedrooms:
-  = select :filterbedrooms, :bedrooms, @apartments.pluck(:bedrooms).uniq, :prompt => "Bedrooms"
+  = select :filterbedrooms, :bedrooms, @apartments.pluck(:bedrooms).uniq, :selected => params[:filterbedrooms], :prompt => "Bedrooms"
   
   Bathrooms:
-  = select :filterbathrooms, :bathrooms, @apartments.pluck(:bathrooms).uniq, :prompt => "Bathrooms"
+  = select :filterbathrooms, :bathrooms, @apartments.pluck(:bathrooms).uniq, :selected => params[:filterbedrooms], :prompt => "Bathrooms"
   
   
   
