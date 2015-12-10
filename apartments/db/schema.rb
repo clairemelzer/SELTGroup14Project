@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20151208213213) do
     t.integer  "bedrooms"
     t.integer  "bathrooms"
     t.integer  "rent"
+    t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "monthly_util"

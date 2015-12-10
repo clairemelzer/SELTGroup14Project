@@ -7,8 +7,9 @@ class CreateApartments < ActiveRecord::Migration
       t.integer :bathrooms
       t.integer :rent
       t.integer :laundry_in_unit
-
+      t.integer :user_id
       t.timestamps null: false
     end
+    add_foreign_key :apartments, :user_id
   end
 end
