@@ -8,11 +8,17 @@ Given /^I am on the ApartmentFinder homepage$/ do
   visit homepage_path
  end
 
- When /^I have added a building with address "(.*?)" and city "(.*?)" and management "(.*?)"$/ do |address, city,  management|
+ When /^I have added a building with address "(.*?)" and city "(.*?)" and management "(.*?)" and parking "(.*?)" and pets "(.*?)"$/ do |address, city,  management, parking, pets|
   visit new_building_path
   fill_in 'Address', :with => address
   fill_in 'Management Company', :with => management
   fill_in 'City', :with => city
+  if pets == "true"
+   check 'Pets allowed?'
+  end
+  if parking == "true"
+   check 'Parking Available?'
+  end
   click_button 'Add Building'
  end
  
@@ -76,6 +82,16 @@ Given /^I am on the ApartmentFinder homepage$/ do
  
  And /I have searched for city "(.*?)"$/ do |city|
    searchcity = city
+   click_on "Search"
+ end
+ 
+  And /I have searched for parking available$/ do
+   searchparking = true
+   click_on "Search"
+ end
+ 
+   And /I have searched for pets allowed$/ do
+   searchpets = true
    click_on "Search"
  end
 

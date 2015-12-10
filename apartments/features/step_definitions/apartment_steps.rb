@@ -3,12 +3,22 @@
  end
 
   
- When /^I have added an apartment with number "(.*?)" and bedrooms "(.*?)" and bathrooms "(.*?)" and rent "(.*?)" and utilities "(.*?)"$/ do |number, bedrooms, bathrooms, rent, utilities|
+ When /^I have added an apartment with number "(.*?)" and bedrooms "(.*?)" and bathrooms "(.*?)" and rent "(.*?)" and utilities "(.*?)" and laundry "(.*?)" and air "(.*?)" and balcony "(.*?)"$/ do |number, bedrooms, bathrooms, rent, utilities, laundry, air, balcony|
   fill_in 'Apartment Number', :with => number
   fill_in "Bedrooms", :with => bedrooms
   fill_in "Bathrooms", :with => bathrooms
   fill_in "Rent", :with => rent
   fill_in "Average Monthly Utilities", :with => utilities
+  if laundry == "true"
+   check 'Laundry In Unit?'
+  end
+  if air == "true"
+   check 'Central Air'
+  end
+  if balcony == "true"
+   check 'Balcony'
+  end
+  
   click_button 'Add Apartment'
  end
  
@@ -63,4 +73,19 @@
   search = param
   click_on "Filter"
  end
+ 
+  And /^I have filtered laundry$/ do
+  filterlaundry = true
+  click_on "Filter"
+ end
+ 
+  And /^I have filtered air$/ do
+   filterair = true
+   click_on "Filter"
+  end
+ 
+  And /^I have filtered balcony$/ do
+   filterbalcony = true
+   click_on "Filter"
+  end
  
