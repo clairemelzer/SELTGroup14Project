@@ -33,8 +33,6 @@ Given /^I am on the ApartmentFinder homepage$/ do
   expect(result).to be_truthy
  end
  
-
-
  Then /^I should not see a building list entry with address "(.*?)" and management "(.*?)"$/ do |address, management| 
    result=false
    all("tr").each do |tr|
@@ -46,8 +44,6 @@ Given /^I am on the ApartmentFinder homepage$/ do
   expect(result).to be_falsey
  end 
  
- 
-
  When /^I have visited the "(.*?)" page$/ do |address|
    visit homepage_path
    click_on "View All Buildings"
@@ -80,19 +76,19 @@ Given /^I am on the ApartmentFinder homepage$/ do
    click_on "More about #{address}"
  end
  
- And /I have searched for address "(.*?)"$/ do |address|
-  fill_in 'Address', :with => address
+ And /I have searched for "(.*?)" "(.*?)"$/ do |search, param|
+  fill_in search, :with => param
   click_on "Search"
  end
  
  And /I have searched for company "(.*?)"$/ do |company|
- searchcompany = company
-  click_on "Search"
+   searchcompany = company
+   click_on "Search"
  end
  
  And /I have searched for city "(.*?)"$/ do |city|
-  searchcity = city
-  click_on "Search"
+   searchcity = city
+   click_on "Search"
  end
 
  Then /^(?:|I )should see "([^"]*)"$/ do |text|

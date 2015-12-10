@@ -66,12 +66,12 @@
   expect(result).to be_truthy
  end
  
- And /^I have filtered bedrooms to "(.*?)"$/ do |bedrooms|
-  filterbedrooms = bedrooms
+ And /^I have filtered "(.*?)" to "(.*?)"$/ do |search, param|
+  search = param
   click_on "Filter"
  end
  
-  And /^I have filtered bathrooms to "(.*?)"$/ do |bathrooms|
-  filterbathrooms = bathrooms
-  click_on "Filter"
- end
+  #And /^I have filtered bathrooms to "(.*?)"$/ do |bathrooms|
+ # filterbathrooms = bathrooms
+ # click_on "Filter"
+ #end

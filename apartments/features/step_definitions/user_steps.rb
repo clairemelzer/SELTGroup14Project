@@ -32,10 +32,6 @@ When /^I click the Log-out Button$/ do
  click_button "Logout"
 end
 
-And /^I click on the User Profile button$/ do
-  visit homepage_path 
-  click_on "View Profile"
-end
 
 Then /^I should see flash message "(.*?)"$/ do |message|
  expect(page).to have_selector ".alert", text: message
