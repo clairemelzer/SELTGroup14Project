@@ -12,26 +12,27 @@ class BuildingsController < ApplicationController
     @apartments = Apartment.where(building_id:id).order('rent')
     
     if params[:filterbalcony] == nil
-
     else
       params[:filterbalcony] = "t"
       @apartments = @apartments.filterbalcony(params[:filterbalcony]).order('rent')
-   end
+    end
+   
     if params[:filterlaundry] == nil 
-
     else 
       params[:filterlaundry] = "t"
       @apartments = @apartments.filterlaundry(params[:filterlaundry]).order('rent')
     end
+    
     if params[:filterair] == nil 
-
     else 
       params[:filterair] = "t"
       @apartments = @apartments.filterair(params[:filterair]).order('rent')
     end
+    
     if params[:filterbathrooms] != nil
       @apartments = @apartments.filterbathrooms(params[:filterbathrooms][:bathrooms]).order('rent')
     end
+    
     if params[:filterbedrooms] != nil 
       @apartments = @apartments.filterbedrooms(params[:filterbedrooms][:bedrooms]).order('rent')
     end
@@ -40,8 +41,10 @@ class BuildingsController < ApplicationController
 
   def index
     @buildings = Building.all
-  
+    
     @buildings = @buildings.searchaddress(params[:searchaddress])
+    
+    
     if params[:searchcompany] != nil
       @buildings = @buildings.searchcompany(params[:searchcompany][:management])
     end

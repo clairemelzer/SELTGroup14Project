@@ -1,14 +1,7 @@
-  When /^I have clicked on add new apartment$/ do 
-   click_on "Add Apartment for Building"
+  When /^I have clicked on "(.*?)"$/ do |click|
+   click_on click
  end
- 
-   When /^I have clicked on add review$/ do 
-   click_on "Add review for this apartment"
- end
- 
-    When /^I have clicked on edit$/ do 
-   click_on "Edit This Apartment"
- end
+
   
  When /^I have added an apartment with number "(.*?)" and bedrooms "(.*?)" and bathrooms "(.*?)" and rent "(.*?)" and utilities "(.*?)"$/ do |number, bedrooms, bathrooms, rent, utilities|
   fill_in 'Apartment Number', :with => number
@@ -71,7 +64,3 @@
   click_on "Filter"
  end
  
-  #And /^I have filtered bathrooms to "(.*?)"$/ do |bathrooms|
- # filterbathrooms = bathrooms
- # click_on "Filter"
- #end

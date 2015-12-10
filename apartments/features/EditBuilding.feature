@@ -7,19 +7,19 @@ Background: signed in and added building
   
 Scenario: Render edit form
   And I have visited the Details about "19 E Burlington St" page 
-  And I have clicked on edit building
+  And I have clicked on "Edit This Building"
   Then I should see "Edit Existing Building"
   
 Scenario: Authorized user wants to edit buildings info
   And I have visited the Details about "19 E Burlington St" page 
-  And I have clicked on edit building
-  And I have updated the building with address "305 S Summit St" and city "Iowa City" and management "Independent" 
+  And I have clicked on "Edit This Building"
+  And I have updated the building with address "30 S Summit St" and management "Independent" 
   And I am on the ApartmentFinder building page  
-  Then I should see a building list entry with address "305 S Summit St" and management "Independent"
+  Then I should see a building list entry with address "30 S Summit St" and management "Independent"
 
 Scenario: Unauthorized user wants to edit buildings info  
-  And I have clicked on logout
+  And I have clicked on "Logout"
   And I am on the ApartmentFinder building page 
   And I have visited the Details about "19 E Burlington St" page 
-  And I have clicked on edit building
+  And I have clicked on "Edit This Building"
   Then I should see "Can only edit building if you are signed in!"

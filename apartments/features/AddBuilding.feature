@@ -17,3 +17,10 @@ Scenario:  Add a new building (Declarative) without the right parameters
   Given I have created a new session with email "clairetest@email.com" and password "hello1"
  When I have added a building with address "" and city "" and management "" 
   Then I should see "Address can't be blank"
+
+Scenario:  Add a new building with same address
+  Given I have created a new user with name "Claire" and email "clairetest@email.com" and password "hello1" and confirmation "hello1"
+  Given I have created a new session with email "clairetest@email.com" and password "hello1"
+  When I have added a building with address "305 S Summit St" and city "Iowa City" and management "Independent" 
+  When I have added a building with address "305 S Summit St" and city "Iowa City" and management "Independent" 
+  Then I should see "Address has already been taken"

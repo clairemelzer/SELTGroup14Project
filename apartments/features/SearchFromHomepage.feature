@@ -26,5 +26,8 @@ Scenario: Search by City
   Then I should not see a building list entry with address "305 S Summit St" and management "Independent" 
   Then I should not see a building list entry with address "319 E Court St" and management "Hawkeye"
 
+Scenario: Search by parking
+  
+Scenario: Search by pets
 
   

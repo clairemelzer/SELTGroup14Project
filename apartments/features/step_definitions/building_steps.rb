@@ -54,18 +54,6 @@ Given /^I am on the ApartmentFinder homepage$/ do
    click_on "Add new Building"
  end
  
-   When /^I have clicked on delete$/ do
-   click_on "Delete"
- end
- 
-    When /^I have clicked on logout$/ do
-   click_on "Logout"
- end
- 
-    When /^I have clicked on edit building$/ do
-   click_on "Edit This Building"
- end
- 
   When /^I have visited the homepage$/ do 
    visit buildings_path
    click_on "Return to Homepage"

@@ -7,11 +7,11 @@ Background: SIgned in and building added
   
 Scenario: Authorized User wants to delete building
   And I have visited the Details about "19 E Burlington St" page 
-  And I have clicked on delete
+  And I have clicked on "Delete"
   Then I should not see a building list entry with address "19 E Burlington St" and management "Apartments Downtown" 
   
 Scenario: Unauthorized User wants to delete building
-  And I have clicked on logout
+  And I have clicked on "Logout"
   And I have visited the Details about "19 E Burlington St" page 
-  And I have clicked on delete
+  And I have clicked on "Delete"
   Then I should see "Can only delete building if you are signed in!"

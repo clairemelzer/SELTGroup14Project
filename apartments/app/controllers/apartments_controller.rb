@@ -22,6 +22,7 @@ class ApartmentsController < ApplicationController
       redirect_to new_session_path
       flash[:warning]= 'Can only add apartment if you are signed in!'
     end
+    @apartment = Apartment.new
 
   end
 

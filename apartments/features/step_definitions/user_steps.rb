@@ -28,10 +28,6 @@ When /^I have created a new session with email "(.*?)" and password "(.*?)"$/ do
  click_button "Login to my account"
 end
 
-When /^I click the Log-out Button$/ do
- click_button "Logout"
-end
-
 
 Then /^I should see flash message "(.*?)"$/ do |message|
  expect(page).to have_selector ".alert", text: message

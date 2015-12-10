@@ -11,21 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208213213) do
+ActiveRecord::Schema.define(version: 20151210175247) do
 
   create_table "apartments", force: :cascade do |t|
     t.integer  "building_id"
-    t.integer  "apartment_number"
-    t.integer  "bedrooms"
-    t.integer  "bathrooms"
-    t.integer  "rent"
-    t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.integer  "monthly_util"
     t.boolean  "central_air"
     t.boolean  "balcony"
     t.boolean  "laundry_in_unit"
+    t.string   "apartment_number"
+    t.string   "bedrooms"
+    t.string   "bathrooms"
+    t.string   "rent"
+    t.string   "monthly_util"
   end
 
   create_table "buildings", force: :cascade do |t|
