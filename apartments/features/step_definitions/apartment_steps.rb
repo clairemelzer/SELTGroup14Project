@@ -10,8 +10,12 @@
    click_on "Edit This Apartment"
  end
   
- When /^I have added an apartment with number "(.*?)"$/ do |number|
+ When /^I have added an apartment with number "(.*?)" and bedrooms "(.*?)" and bathrooms "(.*?)" and rent "(.*?)" and utilities "(.*?)"$/ do |number, bedrooms, bathrooms, rent, utilities|
   fill_in 'Apartment Number', :with => number
+  fill_in "Bedrooms", :with => bedrooms
+  fill_in "Bathrooms", :with => bathrooms
+  fill_in "Rent", :with => rent
+  fill_in "Average Monthly Utilities", :with => utilities
   click_button 'Add Apartment'
  end
  
@@ -60,4 +64,14 @@
      end
    end  
   expect(result).to be_truthy
+ end
+ 
+ And /^I have filtered bedrooms to "(.*?)"$/ do |bedrooms|
+  filterbedrooms = bedrooms
+  click_on "Filter"
+ end
+ 
+  And /^I have filtered bathrooms to "(.*?)"$/ do |bathrooms|
+  filterbathrooms = bathrooms
+  click_on "Filter"
  end

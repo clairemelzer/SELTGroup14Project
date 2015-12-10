@@ -8,10 +8,11 @@ Given /^I am on the ApartmentFinder homepage$/ do
   visit homepage_path
  end
 
- When /^I have added a building with address "(.*?)" and management "(.*?)"$/ do |address, management|
+ When /^I have added a building with address "(.*?)" and city "(.*?)" and management "(.*?)"$/ do |address, city,  management|
   visit new_building_path
   fill_in 'Address', :with => address
   fill_in 'Management Company', :with => management
+  fill_in 'City', :with => city
   click_button 'Add Building'
  end
  
@@ -31,6 +32,8 @@ Given /^I am on the ApartmentFinder homepage$/ do
    end  
   expect(result).to be_truthy
  end
+ 
+
 
  Then /^I should not see a building list entry with address "(.*?)" and management "(.*?)"$/ do |address, management| 
    result=false
@@ -42,6 +45,8 @@ Given /^I am on the ApartmentFinder homepage$/ do
    end  
   expect(result).to be_falsey
  end 
+ 
+ 
 
  When /^I have visited the "(.*?)" page$/ do |address|
    visit homepage_path
@@ -74,10 +79,26 @@ Given /^I am on the ApartmentFinder homepage$/ do
    visit buildings_path
    click_on "More about #{address}"
  end
+ 
+ And /I have searched for address "(.*?)"$/ do |address|
+  fill_in 'Address', :with => address
+  click_on "Search"
+ end
+ 
+ And /I have searched for company "(.*?)"$/ do |company|
+ searchcompany = company
+  click_on "Search"
+ end
+ 
+ And /I have searched for city "(.*?)"$/ do |city|
+  searchcity = city
+  click_on "Search"
+ end
 
  Then /^(?:|I )should see "([^"]*)"$/ do |text|
     expect(page).to have_content(text)
  end
+
 
 
 
