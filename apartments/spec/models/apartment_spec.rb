@@ -25,6 +25,32 @@ RSpec.describe Apartment, type: :model do
      expect(build(:apartment, monthly_util: nil)).to_not be_valid
  end
  
+ describe "should filter apartments" do
+     before(:each) do
+        @apartment = create(:apartment)
+     end
+     
+     it "by selecting balcony" do
+         Apartment.filterbalcony("t").should == [@apartment]
+     end
+     
+     it "by selecting laundry" do
+         Apartment.filterlaundry("t").should == [@apartment]
+     end
+     
+     it "by selecting air" do
+         Apartment.filterair("t").should == [@apartment]
+     end
+     
+     it "by selecting bedrooms" do 
+         Apartment.filterbathrooms(1).should == [@apartment]
+     end
+     
+     it "by selecting bathrooms" do 
+         Apartment.filterbedrooms(1).should == [@apartment]
+     end
+ end
+ 
  #It belongs to an apartment
  it { is_expected.to belong_to :building }
  
