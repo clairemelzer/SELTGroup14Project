@@ -7,5 +7,6 @@ class AddReviewsTable < ActiveRecord::Migration
       t.integer :apartment_id
       t.integer :user_id
     end
+    add_foreign_key :reviews, :user_id
   end
 end

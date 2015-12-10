@@ -5,18 +5,18 @@ require 'buildings_controller'
 RSpec.describe BuildingsController, type: :controller do
     describe "creating a new building" do
         it "should make the new building rendered on the template" do
-            post :create, :building => {:address => "324 test st", :management=> "ANC"}
+            post :create, :building => {:address => "324 test st"+rand(1000).to_s, :management=> "ANC", :city => "IowaCity"}
             expect(assigns(:building)).to be_truthy
         end
         it 'should render the new template with bad parameters' do
-            post :create, :building => {:address => "", :management=> ""}
+            post :create, :building => {:address => "", :management=> "", :city => ""}
             expect(response).to render_template('new')
         end
     end
     describe "update an existing building" do
         before(:each) do
             building = create(:building)
-            @temp =  Building.create!(:address => building.address, :management => building.management)
+            @temp =  Building.create!(:address => building.address+rand(1000).to_s, :management => building.management, :city => building.city)
         end
         
         it 'render the buildings page if a user is not signed in' do
@@ -39,7 +39,7 @@ RSpec.describe BuildingsController, type: :controller do
         #implement when edit buildings functionality added, should redirect to login for now
         it "should update that building attributes " do
             
-            building = {address:@temp.address, management:@temp.management}
+            building = {address:@temp.address+rand(1000).to_s, management:@temp.management, city:@temp.city}
             get :update, :id => @temp.id, :building => building
             expect(response).to redirect_to('/buildings.'+@temp.id.to_s)
         end
