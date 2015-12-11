@@ -14,7 +14,7 @@
       - elsif flash[:warning]
         #warning.message= flash[:warning]
       - if @current_user
-        = button_to "Logout", logout_path, :class => "buttonred", :method => :delete 
+        = button_to "Logout", logout_path, :class => "buttonred right", :method => :delete 
         - flash[:notice] = "You are logged in as #{@current_user.email} (User name: #{@current_user.name})"
         
         %br

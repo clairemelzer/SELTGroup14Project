@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20151210175247) do
 
   create_table "apartments", force: :cascade do |t|
     t.integer  "building_id"
+    t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.boolean  "central_air"
