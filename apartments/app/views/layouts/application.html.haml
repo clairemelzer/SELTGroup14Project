@@ -94,6 +94,7 @@
       	]}
 
       ];
+      
 
       function initMap() {
         geocoder = new google.maps.Geocoder();
@@ -104,11 +105,15 @@
         zoom: 15
         }
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        google.maps.event.trigger(map, 'resize');
         addressDb = document.getElementById('mapTitle').innerHTML;
         codeAddress( addressDb + 'Iowa City');
       }
 
-        function codeAddress(address) {
+
+    
+      function codeAddress(address) {
+        
       	geocoder.geocode( { 'address': address}, function(results, status) {
       	  if (status == google.maps.GeocoderStatus.OK) {
       		map.setCenter(results[0].geometry.location);
@@ -118,11 +123,15 @@
       		});
       	  }
       	});
+      	document.getElementById('map').style.height = "350px";
         }
         
+
       window.onload = initMap();
+    Copyright 2015
     %script{:async => "", :defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyC2avToGDh0KFUIXR3Sj44j33se3Zj7yO0&callback=initMap"}
       :cdata
+    
     
   %body
     %h1.title Iowa City Apartment Finder
@@ -145,3 +154,5 @@
       %br
       - if !current_page?('/homepage')
         = link_to 'Return to Homepage', homepage_path
+        
+  

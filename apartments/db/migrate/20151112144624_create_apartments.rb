@@ -10,6 +10,5 @@ class CreateApartments < ActiveRecord::Migration
       t.integer :user_id
       t.timestamps null: false
     end
-    add_foreign_key :apartments, :user_id
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211083946) do
+ActiveRecord::Schema.define(version: 20151211185132) do
 
   create_table "apartments", force: :cascade do |t|
     t.integer  "building_id"
