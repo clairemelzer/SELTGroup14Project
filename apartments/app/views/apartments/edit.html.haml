@@ -2,7 +2,7 @@
 
 %h1 Edit Existing Apartment
 
-= form_tag building_apartment_path(building_id:params[:building_id], id:params[:id]), :method => :put do
+= form_tag building_apartment_path(building_id:params[:building_id], id:params[:id]), :method => :put, :multipart=> :true do
 
   = label :apartment, :apartment_number, 'Apartment Number'
   = text_field :apartment, 'apartment_number'
@@ -35,6 +35,10 @@
   %br
   =label :apartment, :laundry_in_unit, 'Laundry In Unit?'
   =check_box :apartment, 'laundry_in_unit'
+  %br
+  %br
+  = label  :images , 'Add More Pictures'
+  = file_field_tag "pictures[]", type: :file, multiple: true
   %br
   %br
 

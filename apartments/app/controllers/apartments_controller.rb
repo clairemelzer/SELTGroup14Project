@@ -64,6 +64,11 @@ class ApartmentsController < ApplicationController
     @apartment = Apartment.find params[:id]
     @building_id = params[:building_id]
     @apartment.update_attributes!(apartment_params)
+    if params[:pictures]
+      params[:pictures].each{ |picture|
+      @apartment.images.create(picture: picture)
+    }
+    end
     flash[:notice] = "Apartment Number #{@apartment.apartment_number} was successfully updated."
     redirect_to building_apartment_path(@building_id, @apartment)
   end
