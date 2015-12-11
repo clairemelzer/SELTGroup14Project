@@ -9,15 +9,15 @@ RSpec.describe ApartmentsController, type: :controller do
             @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)
             expect(User).to receive(:find_by_session_token).and_return(true)
             request.cookies['session_token'] = "asdf"
-            testBuilding = create(:building)
-            @temp =  Building.create!(:address => testBuilding.address+rand(1000).to_s, :management => testBuilding.management, :city => testBuilding.city)
+            testBuilding = FactoryGirl.build(:building)
+            @temp =  Building.create!(:address => rand(1000).to_s+testBuilding.address, :management => testBuilding.management, :city => testBuilding.city)
             get :new, building_id:testBuilding.id
             expect(response).to render_template('new')
         end
         
         it "should render the login page if not logged in" do
-            testBuilding = create(:building)
-            @temp =  Building.create!(:address => testBuilding.address+rand(1000).to_s, :management => testBuilding.management, :city => testBuilding.city)
+            testBuilding = FactoryGirl.build(:building)
+            @temp =  Building.create!(:address => rand(1000).to_s+testBuilding.address, :management => testBuilding.management, :city => testBuilding.city)
             get :new, building_id:testBuilding.id
             expect(response).to redirect_to(new_session_path)
         end
@@ -28,8 +28,8 @@ RSpec.describe ApartmentsController, type: :controller do
             @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)
             expect(User).to receive(:find_by_session_token).and_return(@current_user)
             request.cookies['session_token'] = "asdf"
-            testBuilding = create(:building)
-            @temp =  Building.create!(:address => testBuilding.address+rand(1000).to_s, :management => testBuilding.management, :city => testBuilding.city)
+            testBuilding = FactoryGirl.build(:building)
+            @temp =  Building.create!(:address => rand(1000).to_s+testBuilding.address, :management => testBuilding.management, :city => testBuilding.city)
             testApartment = {apartment_number:212}
             
             allow_any_instance_of(Apartment).to receive(:save).and_return(false)
@@ -44,8 +44,8 @@ RSpec.describe ApartmentsController, type: :controller do
             @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)
             expect(User).to receive(:find_by_session_token).and_return(@current_user)
             request.cookies['session_token'] = "asdf"
-            testBuilding = create(:building)
-            @temp =  Building.create!(:address => testBuilding.address+rand(1000).to_s, :management => testBuilding.management, :city => testBuilding.city)
+            testBuilding = FactoryGirl.build(:building)
+            @temp =  Building.create!(:address => rand(1000).to_s+testBuilding.address, :management => testBuilding.management, :city => testBuilding.city)
             testApartment = {apartment_number:212}
             
             post :create, building_id:testBuilding.id, apartment:testApartment
@@ -56,8 +56,8 @@ RSpec.describe ApartmentsController, type: :controller do
     
     describe "updating an existing apartment" do
         before(:each) do
-            building = create(:building)
-            @tempBuilding =  Building.create!(:address => building.address+rand(1000).to_s, :management => building.management, :city => building.city)
+            building = FactoryGirl.build(:building)
+            @tempBuilding =  Building.create!(:address => rand(1000).to_s+building.address, :management => building.management, :city => building.city)
             apartment = create(:apartment)
             @temp =  Apartment.create!(:apartment_number => "212", bedrooms:apartment.bedrooms, bathrooms:apartment.bathrooms, rent:apartment.rent, monthly_util:apartment.monthly_util)
         end
@@ -82,13 +82,39 @@ RSpec.describe ApartmentsController, type: :controller do
     end
     
     describe "deleting an apartment" do
-        it "should remove the apartment from the database and redirect to the builing page" do
-            building = create(:building)
-            @tempBuilding =  Building.create!(:address => building.address+rand(1000).to_s, :management => building.management, :city => building.city)
+        it "should redirect to the builing page if user not logged in" do
+            building = FactoryGirl.build(:building)
+            @tempBuilding =  Building.create!(:address => rand(1000).to_s+building.address, :management => building.management, :city => building.city)
             apartment = create(:apartment)
             @temp =  Apartment.create!(:apartment_number => "212", bedrooms:apartment.bedrooms, bathrooms:apartment.bathrooms, rent:apartment.rent, monthly_util:apartment.monthly_util)
             get :destroy, {:id =>@temp.id, :building_id => @tempBuilding.id}
             expect(response).to redirect_to('/buildings/'+@tempBuilding.id.to_s+"/apartments/"+@temp.id.to_s)
+        end
+        
+        it "should delete the apartment if the user is logged in" do
+            user = create(:user)
+            @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)
+            expect(User).to receive(:find_by_session_token).and_return(@current_user)
+            request.cookies['session_token'] = "asdf"
+            
+            building = FactoryGirl.build(:building)
+            @tempBuilding =  Building.create!(:address => rand(1000).to_s+building.address, :management => building.management, :city => building.city)
+            apartment = build(:apartment)
+            @temp = Apartment.create!(:apartment_number => "212", bedrooms:apartment.bedrooms, bathrooms:apartment.bathrooms, rent:apartment.rent, monthly_util:apartment.monthly_util)
+            
+            expect(Apartment).to receive(:find).and_return(@temp)
+            expect(Apartment).to receive(:find).and_return(@temp)
+            expect(@temp).to receive(:destroy)
+            get :destroy, {:id =>@temp.id, :building_id => @tempBuilding.id}
+            
+        end
+    end
+    
+    describe "viewing all apartments" do
+        it "should load all apartments" do
+            expect(Apartment).to receive(:all)
+            get :index, building_id:1
+            expect(response).to render_template('index')
         end
     end
 end

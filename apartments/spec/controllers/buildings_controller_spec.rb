@@ -5,7 +5,7 @@ require 'buildings_controller'
 RSpec.describe BuildingsController, type: :controller do
     describe "creating a new building" do
         it "should make the new building rendered on the template" do
-            post :create, :building => {:address => "324 test st"+rand(1000).to_s, :management=> "ANC", :city => "IowaCity"}
+            post :create, :building => {:address => rand(1000).to_s+" test st", :management=> "ANC", :city => "IowaCity"}
             expect(assigns(:building)).to be_truthy
         end
         it 'should render the new template with bad parameters' do
@@ -15,8 +15,8 @@ RSpec.describe BuildingsController, type: :controller do
     end
     describe "update an existing building" do
         before(:each) do
-            building = create(:building)
-            @temp =  Building.create!(:address => building.address+rand(1000).to_s, :management => building.management, :city => building.city)
+            building = build(:building)
+            @temp =  Building.create!(:address => rand(1000).to_s+building.address, :management => building.management, :city => building.city)
         end
         
         it 'render the buildings page if a user is not signed in' do
@@ -39,7 +39,7 @@ RSpec.describe BuildingsController, type: :controller do
         #implement when edit buildings functionality added, should redirect to login for now
         it "should update that building attributes " do
             
-            building = {address:@temp.address+rand(1000).to_s, management:@temp.management, city:@temp.city}
+            building = {address:rand(1000).to_s+@temp.address, management:@temp.management, city:@temp.city}
             get :update, :id => @temp.id, :building => building
             expect(response).to redirect_to('/buildings.'+@temp.id.to_s)
         end
@@ -50,6 +50,15 @@ RSpec.describe BuildingsController, type: :controller do
             fake_results = double('building')
             expect(Building).to receive(:find).and_return(fake_results)
             get :show, {:id => "1"}
+            expect(response).to render_template('show')
+        end
+        
+        it "should filter based on building credentials" do
+            param = {filterbalcony:1, filterlaundry:1, filterair:1, filterbedrooms:{bedrooms:1}, filterbathrooms:{bathrooms:1}}
+            
+            fake_results = double('building')
+            expect(Building).to receive(:find).and_return(fake_results)
+            get :show, {:id => "1", building:param}
             expect(response).to render_template('show')
         end
     end
@@ -75,18 +84,41 @@ RSpec.describe BuildingsController, type: :controller do
     
     describe "viewing all buildings" do
         it "renders index template" do
-            get :index
+            param = {searchcompany:{management:"asdf"}, searchcity:{city:"asdf"}, searchparking:["on"], searchpets:[true]}
+            
+            get :index, params:param
             expect(response).to render_template('index')
             expect(assigns(:buildings)).to be_truthy
+            
+            expect(Building.searchcompany).to receive(param[:searchcompany][:management])
+            expect(Building).to receive(self.searchpets)
+            expect(Building).to receive(self.searchparking)
         end
     end
     
     describe "delete existing building" do
-        it "should redirect user to all buildings page after deletion" do
+        it "should redirect user to all buildings page and flash warning if user not logged in" do
             fake_results = Building.new
             expect(Building).to receive(:find).and_return(fake_results)
             get :destroy, {:id=> "1"}, {}
             expect(response).to redirect_to(buildings_path)
+        end
+        
+        it "delete the building if the user is logged in" do
+            user = create(:user)
+            @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)
+            expect(User).to receive(:find_by_session_token).and_return(@current_user)
+            request.cookies['session_token'] = "asdf"
+            
+            building = build(:building)
+            @temp =  Building.create!(:address => rand(1000).to_s+building.address, :management => building.management, :city => building.city)
+        
+            
+            fake_results = Building.new
+            expect(Building).to receive(:find).and_return(@temp)
+            expect(Building).to receive(:find).and_return(@temp)
+            expect(@temp).to receive(:destroy)
+            get :destroy, {:id=> @temp.id}, {}
         end
     end
 end

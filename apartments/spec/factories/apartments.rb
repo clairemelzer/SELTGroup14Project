@@ -7,9 +7,9 @@ FactoryGirl.define do
     rent 350
     user_id 1
     monthly_util 75
-    central_air false
-    balcony false
-    laundry_in_unit false
+    central_air true
+    balcony true
+    laundry_in_unit true
   end
 
 end

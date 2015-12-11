@@ -28,6 +28,20 @@ RSpec.describe UsersController, type: :controller do
         end
     end
     
+    describe "show unlogged user info" do
+        before(:each) do
+            user = create(:user)
+            @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)
+            expect(User).to receive(:find_by_session_token).and_return(@current_user)
+            request.cookies['session_token'] = "asdf"
+        end
+        
+        it "should flash a warning if id nil" do
+            get :show, {:id => 50}
+            expect(flash[:warning]).to be_present
+        end
+    end
+    
     describe "showing user info" do
         before(:each) do
             user = create(:user)
@@ -37,10 +51,35 @@ RSpec.describe UsersController, type: :controller do
         end
         
         it "renders the profile page" do
-            #not sure how to fix failed rspec test
            get :show, {:id => @current_user.id}
            expect(response).to render_template('show')
         end
     end
     
+    describe "editing user info" do
+        it "should render the edit template" do
+            user = create(:user)
+            @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)
+            expect(User).to receive(:find_by_session_token).and_return(@current_user)
+            request.cookies['session_token'] = "asdf"
+            
+            get :edit, {:id => @current_user.id}
+            expect(response).to render_template('edit')
+        end
+    end
+    
+    describe "updating user info" do
+        it "make a call to update attributes" do
+            user = create(:user)
+            @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)
+            expect(User).to receive(:find_by_session_token).and_return(@current_user)
+            request.cookies['session_token'] = "asdf"
+            
+            post :update, {:user => @current_user}
+            expect(flash[:notice]).to be_present
+            expect(response).to redirect_to(user_path(@current_user))
+        end
+        
+        
+    end
 end

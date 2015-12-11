@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Building, type: :model do
   it "has a valid Factory" do
-     expect(create(:building)).to be_valid
+     temp = build(:building)
+     temp.address = rand(1000).to_s + temp.address
+     expect(temp).to be_valid
  end
  
  it "Is invalid without management" do
@@ -19,11 +21,12 @@ RSpec.describe Building, type: :model do
  describe "should filter buildings" do
     
     before(:each) do
-        @building = create(:building)
+        @building = build(:building)
+        @building = Building.create(:address => rand(1000).to_s+@building.address, :management => @building.management, :city => @building.city, pets:@building.pets, parking:@building.parking)
     end
     
     it "by selecting address" do
-        Building.searchaddress("B").should == [@building]
+        Building.searchaddress("e").should == [@building]
     end
     
     it "by selecting company" do

@@ -27,8 +27,9 @@ RSpec.describe Apartment, type: :model do
  
  describe "should filter apartments" do
      before(:each) do
-        @apartment = create(:apartment)
-     end
+        @apartment = build(:apartment)
+        @apartment = Apartment.create!(apartment_number:rand(1000).to_s, bedrooms:@apartment.bedrooms, bathrooms:@apartment.bathrooms, rent:@apartment.rent, monthly_util:@apartment.monthly_util, central_air:@apartment.central_air, balcony:@apartment.balcony, laundry_in_unit:@apartment.laundry_in_unit)
+    end
      
      it "by selecting balcony" do
          Apartment.filterbalcony("t").should == [@apartment]
