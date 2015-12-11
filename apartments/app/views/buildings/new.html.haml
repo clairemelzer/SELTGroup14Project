@@ -7,7 +7,7 @@
       %li #{msg}
      
 
-= form_tag buildings_path do
+= form_tag buildings_path, :multipart=> :true do
 
   = label :building, :address, 'Address'
   = text_field :building, 'address', :class => 'input'
@@ -39,6 +39,10 @@
   %br
   = label :building, :pets, 'Pets allowed?'
   = check_box :building, 'pets'
+  %br
+  %br
+    = label :building, :picture 
+    = file_field :building, :picture
   %br
   %br
   

@@ -2,7 +2,7 @@
 
 %h1 Edit Existing Building
 
-= form_tag building_path(@building), :method => :put do
+= form_tag building_path(@building), :method => :put, :multipart=> :true do
 
   = label :building, :address, 'Address'
   = text_field :building, 'address'
@@ -36,5 +36,9 @@
   = check_box :building, 'pets'
   %br
   %br
-
+    = label :building, :picture 
+    = file_field :building, :picture
+  %br
+  %br
+  
   = submit_tag 'Update Building Info'

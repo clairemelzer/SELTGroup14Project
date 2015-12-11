@@ -1,0 +1,7 @@
+AWS_ACCESS_KEY_ID: "AKIAJP5VICAAPZTDTW4A"
+AWS_SECRET_ACCESS_KEY: "wBPGHLpxxSomy10tkBM8lzIf5TiAeKfyZs3CpbITl"
+S3_BUCKET_NAME: "seltgroup14project"
+
+#:bucket => ENV['seltgroup14project'],
+#     :access_key_id => ENV['AKIAJP5VICAAPZTDTW4A'],
+#     :secret_access_key => ENV['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'],
