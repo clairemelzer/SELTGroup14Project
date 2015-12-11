@@ -6,7 +6,7 @@
     -@apartment.errors.full_messages.each do |msg|
       %li #{msg}
 
-= form_tag building_apartments_path do
+= form_tag building_apartments_path, :multipart => :true do
 
   =label :apartment, :apartment_number, 'Apartment Number'
   =text_field :apartment, 'apartment_number', :class => 'input'
@@ -42,5 +42,10 @@
   =check_box :apartment, 'laundry_in_unit'
   %br
   %br
+    = label  :images , 'Upload Pictures'
+    = file_field_tag "pictures[]", type: :file, multiple: true
+  %br
+  %br
+  
   
   =submit_tag 'Add Apartment', :class => 'buttongreen'

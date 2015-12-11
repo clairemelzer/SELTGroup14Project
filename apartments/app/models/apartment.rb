@@ -2,6 +2,8 @@ class Apartment < ActiveRecord::Base
     belongs_to :building
     belongs_to :user
     has_many :reviews
+    has_many :images, :dependent => :destroy
+    
     
     VALID_NUMBER = /\A\d+\z/
     validates :apartment_number, presence: true, uniqueness: {case_sensitive: false}, format: {with: VALID_NUMBER}

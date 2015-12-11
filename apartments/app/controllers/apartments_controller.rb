@@ -42,7 +42,14 @@ class ApartmentsController < ApplicationController
     @apartment = Apartment.new(apartment_params)
     @building_id = params[:building_id]
     @apartment.building_id = params[:building_id]
+    #If apartment is saved, save the associated pictures
     if @apartment.save
+      if params[:pictures]
+        params[:pictures].each{ |picture|
+          @apartment.images.create(picture: picture)
+        }
+      end
+    
       flash[:notice] = "Apartment #{@apartment.apartment_number} was sucessfully created."
       redirect_to building_path(@building_id)
     else
