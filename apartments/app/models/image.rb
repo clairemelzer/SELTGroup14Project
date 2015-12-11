@@ -1,13 +1,7 @@
 class Image < ActiveRecord::Base
     belongs_to :apartment
     
-    # has_attached_file :picture,
-    # :storage => :s3,
-    # :bucket => "seltgroup14project",
-    # :s3_credentials => {
-    #   :access_key_id     => "AKIAJP5VICAAPZTDTW4A",
-    #   :secret_access_key => "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" },
-    # :s3_protocol    => "https",
+
     has_attached_file :picture,
     :storage => :s3,
     :bucket => ENV["S3_BUCKET_NAME"],
