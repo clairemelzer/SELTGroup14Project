@@ -1,12 +1,12 @@
 html, body {
   margin: 0;
   padding: 0;
-  color: DarkSlateGrey;
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif; 
   font-size: 10pt;
 }
 div#main {
   background: WhiteSmoke;
+  border-radius: 10px;
   width: 90%;
   margin: 0 auto;
   padding: 20px;
