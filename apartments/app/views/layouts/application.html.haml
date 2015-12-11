@@ -6,6 +6,124 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
+    :javascript
+      var map;
+      var geocoder;
+      var addressDb;
+
+      var styles = [
+
+
+        { featureType: "landscape",
+      	elementType: "geometry",
+      	stylers: [
+      	  {"color": '#8AA37B'}
+      	]},
+
+        { featureType: "road",
+      	elementType: "geometry.fill",
+      	stylers: [
+      	  {  "color": "#B2B2B2" }
+
+      	]},
+      	
+        { featureType: "road",
+      	elementType: "geometry.stroke",
+      	stylers: [
+      	  {  "color": "#474747" }
+
+      	]},
+      	
+      	
+        { featureType: "all",
+      	elementType: "labels.text.fill",
+      	stylers: [
+      	  {  "color": "#EEB422" }
+
+      	]},
+        { featureType: "all",
+      	elementType: "labels.text.stroke",
+      	stylers: [
+      	  {  "color": "#171717" }
+
+      	]},
+
+
+        { featureType: "road.highway",
+      	elementType: "geometry",
+      	stylers: [
+      	  {  "color": "#E5E5E5" },
+      	  {lightness: 50}
+
+      	]},
+
+        { featureType: "water",
+      	elementType: "geometry",
+      	stylers: [
+      	  { color: "#388E8E"}
+
+      	 ]},
+
+        { featureType: "poi.park",
+      	elementType: "geometry",
+      	stylers: [
+      	  { color: "#00AF33"},
+      	  { saturation: -20 }
+
+      	]},
+
+        { featureType: "poi.school",
+      	elementType: "geometry.fill",
+      	stylers: [
+      	  { color: "#EEC900"}
+
+      	 ]},
+
+        { featureType: "transit",
+      	elementType: "geometry.fill",
+      	stylers: [
+      	  { color: "#964514"}
+
+      	]},
+
+        { featureType: "transit",
+      	elementType: "geometry.stroke",
+      	stylers: [
+      	  { color: "#EEB422"}
+
+      	]}
+
+      ];
+
+      function initMap() {
+        geocoder = new google.maps.Geocoder();
+        var mapOptions = {
+        mapTypeId:google.maps.MapTypeId.ROADMAP,
+        styles: styles,
+        center: {lat: 41.6667, lng: -91.5333},
+        zoom: 15
+        }
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        addressDb = document.getElementById('mapTitle').innerHTML;
+        codeAddress( addressDb + 'Iowa City');
+      }
+
+        function codeAddress(address) {
+      	geocoder.geocode( { 'address': address}, function(results, status) {
+      	  if (status == google.maps.GeocoderStatus.OK) {
+      		map.setCenter(results[0].geometry.location);
+      		var marker = new google.maps.Marker({
+      			map: map,
+      			position: results[0].geometry.location
+      		});
+      	  }
+      	});
+        }
+        
+      window.onload = initMap();
+    %script{:async => "", :defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyC2avToGDh0KFUIXR3Sj44j33se3Zj7yO0&callback=initMap"}
+      :cdata
+    
   %body
     %h1.title Iowa City Apartment Finder
     #main

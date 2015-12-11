@@ -345,3 +345,18 @@ form label {
 	position:relative;
 	top:1px;
 }
+
+#buildingDetails {
+  width: 50%;
+  height: 350px;
+}
+#map { 
+	height: 300px; 
+	width: 40%;
+	top: 100px;
+	margin-left: 50%;
+	position: absolute;
+}
+#mapTitle {
+	visibility: hidden;
+}

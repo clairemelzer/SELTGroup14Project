@@ -1,27 +1,31 @@
 -# in app/views/movies/show.html.haml
 
-%h2 Details about #{@building.address}, #{@building.city} 
-
-
-%ul#details
+#buildingDetails
+  %h2 Details about #{@building.address}, #{@building.city} 
   
-  Managment Company:
-  = @building.management
+  
+  %ul#details
+    
+    Managment Company:
+    = @building.management
+    %br
+    Number of Apartments:
+    = @building.number_apartments
+    %br
+    Number of building washer/dryer machines:
+    = @building.laundry
+    %br
+    Parking available:
+    -if (@building.parking) then @result="yes" else @result="no" end
+    #{@result}
+    %br
+    Pets allowed:
+    -if (@building.pets) then @result="yes" else @result="no" end
+    #{@result}
   %br
-  Number of Apartments:
-  = @building.number_apartments
-  %br
-  Number of building washer/dryer machines:
-  = @building.laundry
-  %br
-  Parking available:
-  -if (@building.parking) then @result="yes" else @result="no" end
-  #{@result}
-  %br
-  Pets allowed:
-  -if (@building.pets) then @result="yes" else @result="no" end
-  #{@result}
-%br
+
+%h2#mapTitle #{raw @building.address.to_s}
+#map
 
 %h3 Picture:
 
