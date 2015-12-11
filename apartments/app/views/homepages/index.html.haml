@@ -1,9 +1,9 @@
 - if @current_user == nil
-  = button_to "SignUp/Login", login_path, method: :get, :id =>"login", :class => 'buttonblue'
+  = button_to "SignUp/Login", login_path, method: :get, :id =>"login", :class => 'buttonblue right'
 
 
 %br
-%h2 Welcome To The Apartment Finder!
+%h2{:class => 'welcome'} Welcome To The Apartment Finder!
 %br
 %br
 %h2 Search for an apartment by the following criteria:
@@ -22,7 +22,7 @@
   = check_box_tag :searchpets, params[:searchpets]
   
 
-  = submit_tag 'Search'
+  = submit_tag 'Search', :class => 'buttonorange'
 
 
 %br
