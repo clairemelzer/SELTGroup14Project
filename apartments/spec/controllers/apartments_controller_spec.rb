@@ -18,6 +18,7 @@ RSpec.describe ApartmentsController, type: :controller do
         it "should render the login page if not logged in" do
             testBuilding = FactoryGirl.build(:building)
             @temp =  Building.create!(:address => rand(1000).to_s+testBuilding.address, :management => testBuilding.management, :city => testBuilding.city)
+            @current_user=false            
             get :new, building_id:testBuilding.id
             expect(response).to redirect_to(new_session_path)
         end
@@ -45,11 +46,28 @@ RSpec.describe ApartmentsController, type: :controller do
             expect(User).to receive(:find_by_session_token).and_return(@current_user)
             request.cookies['session_token'] = "asdf"
             testBuilding = FactoryGirl.build(:building)
+            @temp2 =  Building.create!(:address => rand(1000).to_s+testBuilding.address, :management => testBuilding.management, :city => testBuilding.city)
+            apartment = FactoryGirl.build(:apartment)
+            @temp =Apartment.create!(:apartment_number => "212", bedrooms:apartment.bedrooms, bathrooms:apartment.bathrooms, rent:apartment.rent, monthly_util:apartment.monthly_util)
+            
+            allow_any_instance_of(Apartment).to receive(:save).and_return(true)
+            
+            post :create, building_id:testBuilding.id, apartment:{apartment_number:@temp.apartment_number, bedrooms:@temp.bedrooms, bathrooms:@temp.bathrooms, rent:@temp.rent, monthly_util:@temp.monthly_util}
+            #response.should redirect_to '/buildings/1'
+            expect(response).to redirect_to('/buildings/'+@temp2.id.to_s)
+            expect(flash[:notice]).to be_truthy
+        end
+        
+        it "should redirect the user to new if saved not save" do 
+            user = create(:user)
+            @current_user = User.create!(name:user.name,email:(rand(10000).to_s+user.email), password:user.password, password_confirmation:user.password_confirmation)
+            expect(User).to receive(:find_by_session_token).and_return(@current_user)
+            request.cookies['session_token'] = "asdf"
+            testBuilding = FactoryGirl.build(:building)
             @temp =  Building.create!(:address => rand(1000).to_s+testBuilding.address, :management => testBuilding.management, :city => testBuilding.city)
             testApartment = {apartment_number:212}
             
             post :create, building_id:testBuilding.id, apartment:testApartment
-            #response.should redirect_to '/buildings/1'
             expect(response).to render_template('new')
         end
     end
@@ -115,6 +133,18 @@ RSpec.describe ApartmentsController, type: :controller do
             expect(Apartment).to receive(:all)
             get :index, building_id:1
             expect(response).to render_template('index')
+        end
+    end
+    
+    describe "showing an apartment" do
+        it "should require two ids and find the corresponding building, apartment and reviews" do
+            building = FactoryGirl.build(:building)
+            @tempBuilding =  Building.create!(:address => rand(1000).to_s+building.address, :management => building.management, :city => building.city)
+            apartment = build(:apartment)
+            @temp = Apartment.create!(:apartment_number => "212", bedrooms:apartment.bedrooms, bathrooms:apartment.bathrooms, rent:apartment.rent, monthly_util:apartment.monthly_util)
+        
+            get :show, {id:@temp.id, building_id:@tempBuilding.id}
+            expect(response).to render_template('show')
         end
     end
 end

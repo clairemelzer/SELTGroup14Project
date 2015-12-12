@@ -75,7 +75,7 @@ RSpec.describe UsersController, type: :controller do
             expect(User).to receive(:find_by_session_token).and_return(@current_user)
             request.cookies['session_token'] = "asdf"
             
-            post :update, {:user => @current_user}
+            patch :update, {id:@current_user.id, :user => {name:@current_user.name, email:@current_user.email, password:@current_user.password, password_confirmation:@current_user.password_confirmation}}
             expect(flash[:notice]).to be_present
             expect(response).to redirect_to(user_path(@current_user))
         end

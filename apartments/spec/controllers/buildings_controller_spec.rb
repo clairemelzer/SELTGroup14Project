@@ -54,11 +54,16 @@ RSpec.describe BuildingsController, type: :controller do
         end
         
         it "should filter based on building credentials" do
-            param = {filterbalcony:1, filterlaundry:1, filterair:1, filterbedrooms:{bedrooms:1}, filterbathrooms:{bathrooms:1}}
+            param = Hash.new()#{filterbalcony:1, filterlaundry:1, filterair:1, filterbedrooms:{bedrooms:1}, filterbathrooms:{bathrooms:1}}
+            param[:filterbalcony] = true
+            param[:filterair] = true
+            param[:filterlaundry] = true
+            param[:filterbedrooms] = {bedrooms:1}
+            param[:filterbathrooms] = {bathrooms:1}
             
             fake_results = double('building')
             expect(Building).to receive(:find).and_return(fake_results)
-            get :show, {:id => "1", building:param}
+            get :show, {:id => "1"}, param
             expect(response).to render_template('show')
         end
     end
@@ -84,15 +89,17 @@ RSpec.describe BuildingsController, type: :controller do
     
     describe "viewing all buildings" do
         it "renders index template" do
-            param = {searchcompany:{management:"asdf"}, searchcity:{city:"asdf"}, searchparking:["on"], searchpets:[true]}
+            param = Hash.new()
+            param[:searchcompany] = {management:'asdf'}
+            param[:searchcity] = {city:'asdf'}
+            param[:searchparking] = 'on'
+            param[:searchpets] = true
+            param[:searchaddress] = 'lalala'
             
-            get :index, params:param
+            get :index, param#[searchcompany:[management:'asdf'], searchcity:[city:'asdf'], searchparking:'on', searchpets:true]
             expect(response).to render_template('index')
             expect(assigns(:buildings)).to be_truthy
             
-            expect(Building.searchcompany).to receive(param[:searchcompany][:management])
-            expect(Building).to receive(self.searchpets)
-            expect(Building).to receive(self.searchparking)
         end
     end
     
@@ -114,7 +121,6 @@ RSpec.describe BuildingsController, type: :controller do
             @temp =  Building.create!(:address => rand(1000).to_s+building.address, :management => building.management, :city => building.city)
         
             
-            fake_results = Building.new
             expect(Building).to receive(:find).and_return(@temp)
             expect(Building).to receive(:find).and_return(@temp)
             expect(@temp).to receive(:destroy)
